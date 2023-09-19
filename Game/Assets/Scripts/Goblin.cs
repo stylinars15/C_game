@@ -12,14 +12,14 @@ public class Goblin : MonoBehaviour
     int _currentHealth;
     
     private float attackCooldown;
-    private float attackRange = 2f;
+    private float attackRange = 1.9f;
     [SerializeField] private int damage;
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField]     private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
     private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
-
     private Transform playerTransform;
     private bool isAttacking = false;
     
@@ -38,6 +38,7 @@ public class Goblin : MonoBehaviour
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
                 // Start attacking when in range.
+                animator.SetBool("IsMoving", false);
                 isAttacking = true;
                 animator.SetTrigger("Attack");
                 cooldownTimer = 0;
@@ -58,9 +59,13 @@ public class Goblin : MonoBehaviour
                 }
 
                 // If the player is in sight, move towards the player.
-                animator.SetTrigger("Run");
+                animator.SetBool("IsMoving", true);
                 Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
             }
         }
         else
@@ -83,7 +88,17 @@ public class Goblin : MonoBehaviour
 
         return hit.collider != null;
     }
-
+    
+    private void DamagePlayer()
+    {
+        if (playerInsight())
+        {
+            // PLAYER HEALTH
+        }
+        
+    }
+    
+    // USED IN PLAYER_COMBAT
     public void TakeDamage(int damage) 
     {
         _currentHealth -= damage;
@@ -91,29 +106,16 @@ public class Goblin : MonoBehaviour
         if(_currentHealth <= 0)
         {
             _currentHealth = 0; // Ensure health doesn't go negative
-            Die();
+            Debug.Log("dead"); // Add this line for debugging
+            animator.SetTrigger("Death");
+            polygonCollider.enabled = false;
+            boxCollider.enabled = false;
+            this.enabled = false;
         }
         else
         {
             animator.SetTrigger("Take_Hit");
         }
-    }
-
-    void Die()
-    { 
-        animator.SetTrigger("Death");
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-    }
-    
-    private void DamagePlayer()
-    {
-        if (playerInsight())
-        {
-            //MISSING PLAYER HEALTH
-          // playerController.playerHealth.TakeDamage(damage);
-        }
-        
     }
     
     
