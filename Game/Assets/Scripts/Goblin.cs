@@ -10,12 +10,12 @@ public class Goblin : MonoBehaviour
     public Animator animator;
     public int maxHealth = 100;
     int _currentHealth;
-    
-    private float attackCooldown;
+
+    [SerializeField] private float attackCooldown;
     private float attackRange = 1.9f;
     [SerializeField] private int damage;
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField]     private PolygonCollider2D polygonCollider;
+    [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
@@ -27,7 +27,6 @@ public class Goblin : MonoBehaviour
     { 
         _currentHealth = maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
-
     }
     
     private void Update()
@@ -68,7 +67,7 @@ public class Goblin : MonoBehaviour
                 animator.SetBool("IsMoving", false);
             }
         }
-        else
+        else 
         {
             // If attacking, check the attack cooldown.
             cooldownTimer += Time.deltaTime;
@@ -82,7 +81,7 @@ public class Goblin : MonoBehaviour
     private bool playerInsight()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
-            boxCollider.bounds.center, // Use the center of boxCollider_2
+            boxCollider.bounds.center,
             new Vector2(boxCollider.bounds.size.x, boxCollider.bounds.size.y),
             0, Vector2.left, 0, playerLayer);
 
@@ -117,8 +116,6 @@ public class Goblin : MonoBehaviour
             animator.SetTrigger("Take_Hit");
         }
     }
-    
-    
     
     
 

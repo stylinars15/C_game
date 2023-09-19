@@ -34,8 +34,6 @@ public class PlayerController : MonoBehaviour
     const string PlayerJump = "Jump_1";
     const string PlayerFall = "Fall_1";
     bool _facingRight = true; 
-
-    
     
     // Start is called before the first frame update
     void Start()
@@ -57,9 +55,10 @@ public class PlayerController : MonoBehaviour
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
     }
-
+  
     private void FixedUpdate()
     {
+
         // Determine the movement direction and apply horizontal force.
         if (IsAnimationPlaying(_animator, PlayerJump))
         {
