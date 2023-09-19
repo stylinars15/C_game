@@ -35,11 +35,32 @@ public class PlayerController : MonoBehaviour
     const string PlayerFall = "Fall_1";
     bool _facingRight = true; 
 
+    //Healthbar and Power initialize
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public int maxPower = 100;
+    public int currentPower = 0;
     
+    public BarHandler Healthbar;
+    public BarHandler Powerbar; 
+    
+
     
     // Start is called before the first frame update
     void Start()
     {
+        //setting up our health
+        currentHealth = maxHealth;
+        Healthbar.SetMaxBar(maxHealth);
+        
+        //setting up our power
+        Powerbar.SetBar(currentPower);
+        Powerbar.SetMaxBar(maxPower);
+        
+        
+        
+        
         // getting our players rigidbody component
         _rb2D = gameObject.GetComponent<Rigidbody2D>();
         // setting up the animator
@@ -50,14 +71,38 @@ public class PlayerController : MonoBehaviour
         _jumpState = false;
         
     }
+    
 
     // Update is called once per frame
     void Update()
     {
         _moveHorizontal = Input.GetAxisRaw("Horizontal");
         _moveVertical = Input.GetAxisRaw("Vertical");
+        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            TakeDamage(20);
+            GetPower(20);
+        }
     }
 
+    //Healthbar function test
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage; 
+        //updating our health
+        Healthbar.SetBar(currentHealth);
+        
+    }
+    //Powerbar function test
+    void GetPower(int power)
+    {
+        currentPower += power; 
+        //updating our health
+        Powerbar.SetBar(currentPower);
+        
+    }
+    
     private void FixedUpdate()
     {
         // Determine the movement direction and apply horizontal force.
