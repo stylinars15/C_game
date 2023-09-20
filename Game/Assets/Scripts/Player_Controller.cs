@@ -42,23 +42,18 @@ public class PlayerController : MonoBehaviour
     public int maxPower = 100;
     public int currentPower = 0;
     
-    public BarHandler Healthbar;
-    public BarHandler Powerbar; 
-    
+    public BarHandler BarHandler;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        //setting up our health
+        //Setting up our health and power
+        BarHandler.SetMaxBars(maxHealth,maxPower);
+        //Setting current health to 100
         currentHealth = maxHealth;
-        Healthbar.SetMaxBar(maxHealth);
-        
-        //setting up our power
-        Powerbar.SetBar(currentPower);
-        Powerbar.SetMaxBar(maxPower);
-        
-        
+        //Setting current power to 0
+        BarHandler.SetPower(currentPower);
         
         
         // getting our players rigidbody component
@@ -91,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage; 
         //updating our health
-        Healthbar.SetBar(currentHealth);
+        BarHandler.SetHealth(currentHealth);
         
     }
     //Powerbar function test
@@ -99,7 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         currentPower += power; 
         //updating our health
-        Powerbar.SetBar(currentPower);
+        BarHandler.SetPower(currentPower);
         
     }
     

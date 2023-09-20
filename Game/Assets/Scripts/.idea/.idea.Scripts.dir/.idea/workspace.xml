@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1eb00f46-db91-467d-94ed-c5f262a240e3" name="Changes" comment="" />
+    <list default="true" id="1eb00f46-db91-467d-94ed-c5f262a240e3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/../Scenes/SampleScene.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,9 +19,9 @@
     <setting file="file://$PROJECT_DIR$/Goblin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../Project/Project/Assets/Healthbar.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2Vby13dRhepaiGoO9meiRBGg3cN" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -30,7 +32,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Creating__healthbar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -54,6 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1695118856376</updated>
       <workItem from="1695118858338" duration="620000" />
+      <workItem from="1695191467298" duration="5000" />
     </task>
     <servers />
   </component>
