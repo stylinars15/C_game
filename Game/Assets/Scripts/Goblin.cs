@@ -27,6 +27,7 @@ public class Goblin : MonoBehaviour
     { 
         _currentHealth = maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
+        
     }
     
     private void Update()
@@ -44,7 +45,7 @@ public class Goblin : MonoBehaviour
 
                 // Here, you should trigger the actual attack, e.g., damage the player.
                 // Call a method like DamagePlayer() to deal damage to the player.
-                DamagePlayer();
+              
             }
             else if (playerInsight())
             {
@@ -88,13 +89,14 @@ public class Goblin : MonoBehaviour
         return hit.collider != null;
     }
     
+    
+    // Called when goblin SLASHES
     private void DamagePlayer()
     {
         if (playerInsight())
         {
-            // PLAYER HEALTH
+            playerController.PlayDamageAnimation();
         }
-        
     }
     
     // USED IN PLAYER_COMBAT

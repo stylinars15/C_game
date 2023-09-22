@@ -169,6 +169,13 @@ public class PlayerController : MonoBehaviour
         _facingRight = !_facingRight; 
 
     }
+    
+    public void PlayDamageAnimation()
+    {
+        // Assuming you have a "TakeDamage" trigger parameter in your Animator controller.
+        _animator.SetTrigger("Take_Damage");
+    }
+    
 
 }
 

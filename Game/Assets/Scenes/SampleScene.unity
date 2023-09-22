@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5014956, y: 1.1880251, z: -10}
+  m_LocalPosition: {x: -3.5014954, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -987,7 +987,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: ca75baa2c00dd42149ca5d0036f4af6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1089,7 +1089,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 88ee0d88f21584d8ead50279a1fb3b8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1689,7 +1689,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5014956, y: 1.1880251, z: -10}
+  m_LocalPosition: {x: -3.5014954, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1728,7 +1728,19 @@ MonoBehaviour:
       m_Calls: []
   m_CameraActivatedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &768759085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2595,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1204063883, guid: d4b673e1d1d604bc0a5204f3fd53a7e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2699,7 +2711,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  playerController: {fileID: 0}
+  playerController: {fileID: 424158066}
 --- !u!61 &1175858510
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2791,18 +2803,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: -1.51, y: 2.8, z: 0}
-  m_LookaheadTime: 0.332
-  m_LookaheadSmoothing: 10.2
+  m_LookaheadTime: 0.411
+  m_LookaheadSmoothing: 10.7
   m_LookaheadIgnoreY: 1
-  m_XDamping: 1
+  m_XDamping: 2.5
   m_YDamping: 0
-  m_ZDamping: 1
+  m_ZDamping: 2.5
   m_TargetMovementOnly: 1
   m_ScreenX: 0.36
-  m_ScreenY: 0.34580252
+  m_ScreenY: 0.34580255
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
+  m_DeadZoneWidth: 0.3
+  m_DeadZoneHeight: 0.76
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.77
