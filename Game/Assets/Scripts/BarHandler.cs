@@ -71,7 +71,6 @@ public class BarHandler : MonoBehaviour
         currentHealth -= damage; 
         //updating our health
         SetHealth(currentHealth);
-        
     }
     //Powerbar function test
     void GetPower(int power)

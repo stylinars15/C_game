@@ -18,6 +18,7 @@ public class Goblin : MonoBehaviour
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private PlayerController playerController;
+    
     private float cooldownTimer = Mathf.Infinity;
     private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
@@ -96,6 +97,7 @@ public class Goblin : MonoBehaviour
         if (playerInsight())
         {
             playerController.PlayDamageAnimation();
+            //barHandler.TakeDamage(5)
         }
     }
     
@@ -118,7 +120,6 @@ public class Goblin : MonoBehaviour
             animator.SetTrigger("Take_Hit");
         }
     }
-    
     
 
 }
