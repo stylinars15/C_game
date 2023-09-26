@@ -33,14 +33,6 @@ public class BarHandler : MonoBehaviour
         //SetPower(currentPower);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            TakeDamage(20);
-        }
-    }
-
     public void SetMaxBars(int maxHealth)
     {
         healthSlider.maxValue = maxHealth;
@@ -67,12 +59,19 @@ public class BarHandler : MonoBehaviour
     }*/
     
     //Healthbar function test
-    void TakeDamage(int damage)
+    
+    public bool TakeDamage(int damage)
     {
-        currentHealth -= damage; 
-        //updating our health
+        currentHealth -= damage;
+
+        // Check if the player's health is less than or equal to zero.
+        bool isDead = currentHealth <= 0;
+
+        // Updating our health
         SetHealth(currentHealth);
-        
+
+        // Return a boolean value indicating whether the player is dead.
+        return isDead;
     }
     
     //Powerbar function test

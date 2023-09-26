@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5006247, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5014954, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1012,8 +1012,8 @@ GameObject:
   - component: {fileID: 424158062}
   - component: {fileID: 424158069}
   - component: {fileID: 424158065}
-  - component: {fileID: 424158066}
   - component: {fileID: 424158068}
+  - component: {fileID: 424158066}
   - component: {fileID: 424158070}
   m_Layer: 3
   m_Name: Player
@@ -1115,6 +1115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 966357175}
+  - {fileID: 1280043863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &424158065
@@ -1164,6 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72640b47253ae40dd8e94ba5e79c581a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barHandler: {fileID: 1648768148}
 --- !u!95 &424158068
 Animator:
   serializedVersion: 5
@@ -1764,7 +1766,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5006247, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5014954, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3081,7 +3083,7 @@ GameObject:
   - component: {fileID: 1280043861}
   - component: {fileID: 1280043860}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Health_canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3163,7 +3165,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1648768147}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 424158064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3518,7 +3520,7 @@ GameObject:
   - component: {fileID: 1648768148}
   m_Layer: 5
   m_Name: Player_stats
-  m_TagString: Untagged
+  m_TagString: Health_bar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5039,5 +5041,4 @@ SceneRoots:
   - {fileID: 424158064}
   - {fileID: 1175832308}
   - {fileID: 2135980107}
-  - {fileID: 1280043863}
   - {fileID: 1187335694}
