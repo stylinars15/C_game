@@ -7,29 +7,30 @@ using UnityEngine.UI;
 public class BarHandler : MonoBehaviour
 {
     public Slider healthSlider;
-    public Slider powerSlider;
+    //public Slider powerSlider;
     
     public Gradient Health_colorChange;
-    public Gradient Power_colorChange;
+    //public Gradient Power_colorChange;
     
     public Image healthFill;
-    public Image powerFill;
+    //public Image powerFill;
 
     //Healthbar and Power initialize
     public int maxHealth = 100;
     public int currentHealth;
 
-    public int maxPower = 100;
-    public int currentPower = 0;
+    //public int maxPower = 100;
+    //public int currentPower = 0;
 
     public void Start()
     {
         //Setting up our health and power
-        SetMaxBars(maxHealth,maxPower);
+        SetMaxBars(maxHealth);
         //Setting current health to 100
         currentHealth = maxHealth;
+        
         //Setting current power to 0
-        SetPower(currentPower);
+        //SetPower(currentPower);
     }
 
     public void Update()
@@ -37,20 +38,19 @@ public class BarHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             TakeDamage(20);
-            GetPower(20);
         }
     }
 
-    public void SetMaxBars(int maxHealth, int maxPower)
+    public void SetMaxBars(int maxHealth)
     {
         healthSlider.maxValue = maxHealth;
-        powerSlider.maxValue = maxPower;
+        //powerSlider.maxValue = maxPower;
 
         healthSlider.value = maxHealth;
-        powerSlider.value = maxPower;
+        //powerSlider.value = maxPower;
 
         healthFill.color = Health_colorChange.Evaluate(1f);
-        powerFill.color = Power_colorChange.Evaluate(1f);
+        //powerFill.color = Power_colorChange.Evaluate(1f);
     }
 
     public void SetHealth(int currentHealth)
@@ -59,11 +59,12 @@ public class BarHandler : MonoBehaviour
         healthFill.color = Health_colorChange.Evaluate(healthSlider.normalizedValue);
     }
     
+    /*
     public void SetPower(int currentPower)
     {
         powerSlider.value = currentPower;
         powerFill.color = Power_colorChange.Evaluate(powerSlider.normalizedValue);
-    }
+    }*/
     
     //Healthbar function test
     void TakeDamage(int damage)
@@ -71,14 +72,18 @@ public class BarHandler : MonoBehaviour
         currentHealth -= damage; 
         //updating our health
         SetHealth(currentHealth);
+        
     }
+    
     //Powerbar function test
+    /*
     void GetPower(int power)
     {
         currentPower += power; 
         //updating our health
         SetPower(currentPower);
         
-    }
+    }*/
 
 }
+
