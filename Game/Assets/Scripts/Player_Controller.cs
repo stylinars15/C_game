@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
         Idle, 
         Running,
         Jumping,
-        Falling
+        Falling,
+        Defending
     }
     private PlayerState _currentPlayerState = PlayerState.Idle;
     private PlayerState _previousPlayerState = PlayerState.Falling;
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
   
     private void FixedUpdate()
     {
-
         // Determine the movement direction and apply horizontal force.
         if (IsAnimationPlaying(_animator, PlayerJump))
         {
@@ -87,14 +87,12 @@ public class PlayerController : MonoBehaviour
                 _currentPlayerState = PlayerState.Jumping; // Set isJumping to true when jumping.
             }
         }
-        
         // Check if the character has started falling.
         else if (_currentPlayerState == PlayerState.Jumping && _rb2D.velocity.y < 0 )
         {
             ChangeAnimationState(PlayerFall);
             _currentPlayerState = PlayerState.Falling;
         }
-        
         // Change animation state based on movement and flip character if needed.
         else if (_currentPlayerState != PlayerState.Falling && _currentPlayerState != PlayerState.Jumping )
         {
@@ -113,6 +111,17 @@ public class PlayerController : MonoBehaviour
                 _currentPlayerState = PlayerState.Idle;
             }
         }
+        
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            _animator.SetBool("Defend", true);
+            _currentPlayerState = PlayerState.Defending;
+        }
+        else
+        {
+            _animator.SetBool("Defend", false);
+        }
+        
     }
 
    
@@ -170,12 +179,15 @@ public class PlayerController : MonoBehaviour
 
     }
     
+    //Used in goblin DamagePlayer() function
     public void PlayDamageAnimation()
     {
-        // Assuming you have a "TakeDamage" trigger parameter in your Animator controller.
-        _animator.SetTrigger("Take_Damage");
+        if (!(_animator.GetBool("Defend")))
+        {
+            _animator.SetTrigger("Take_Damage");
+            Debug.Log("damge");
+            //barHandler.TakeDamage(5)
+        }
     }
-    
-
 }
 

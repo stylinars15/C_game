@@ -94,10 +94,10 @@ public class Goblin : MonoBehaviour
     // Called when goblin SLASHES
     private void DamagePlayer()
     {
-        if (playerInsight())
+        // check if player is within attackrange
+        if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
             playerController.PlayDamageAnimation();
-            //barHandler.TakeDamage(5)
         }
     }
     
