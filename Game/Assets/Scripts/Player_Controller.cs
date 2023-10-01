@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb2D;
+    [SerializeField] private BarHandler barHandler;
     
     //player movent variables 
     private float _moveSpeed; 
@@ -21,7 +22,9 @@ public class PlayerController : MonoBehaviour
         Idle, 
         Running,
         Jumping,
-        Falling
+        Falling,
+        Defending,
+        Take_Damage
     }
     private PlayerState _currentPlayerState = PlayerState.Idle;
     private PlayerState _previousPlayerState = PlayerState.Falling;
@@ -52,15 +55,29 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _moveHorizontal = Input.GetAxisRaw("Horizontal");
-        _moveVertical = Input.GetAxisRaw("Vertical");
+        // player getting damaged 
+        if(IsAnimationPlaying(_animator, "Take_Damage") || _currentPlayerState == PlayerState.Take_Damage)
+        {
+            _currentPlayerState = PlayerState.Take_Damage;
+            //cannot move
+            _moveHorizontal = 0f;
+            _moveVertical = 0f;
+        }
+        else
+        {
+            _moveHorizontal = Input.GetAxisRaw("Horizontal");
+            _moveVertical = Input.GetAxisRaw("Vertical");
+        }
     }
   
     private void FixedUpdate()
     {
-
         // Determine the movement direction and apply horizontal force.
-        if (IsAnimationPlaying(_animator, PlayerJump))
+        if(IsAnimationPlaying(_animator, "Take_Damage"))
+        {
+            _currentPlayerState = PlayerState.Take_Damage;
+        }
+        else if (IsAnimationPlaying(_animator, PlayerJump))
         {
             _currentPlayerState = PlayerState.Jumping;
         }
@@ -76,8 +93,13 @@ public class PlayerController : MonoBehaviour
         _rb2D.AddForce(new Vector2(horizontalForce, 0), ForceMode2D.Impulse);
         
         
+        
+        if(IsAnimationPlaying(_animator, "Take_Damage"))
+        {
+            _currentPlayerState = PlayerState.Take_Damage;
+        }
         // Check for a jump and apply vertical force if conditions are met.
-        if (_previousPlayerState == PlayerState.Falling && !_jumpState && _moveVertical > 0.1f )
+        else if (_previousPlayerState == PlayerState.Falling && !_jumpState && _moveVertical > 0.1f )
         {
             // Check the current vertical velocity.
             if (Mathf.Abs(_rb2D.velocity.y) < 10.0f)
@@ -87,18 +109,16 @@ public class PlayerController : MonoBehaviour
                 _currentPlayerState = PlayerState.Jumping; // Set isJumping to true when jumping.
             }
         }
-        
         // Check if the character has started falling.
         else if (_currentPlayerState == PlayerState.Jumping && _rb2D.velocity.y < 0 )
         {
             ChangeAnimationState(PlayerFall);
             _currentPlayerState = PlayerState.Falling;
         }
-        
         // Change animation state based on movement and flip character if needed.
         else if (_currentPlayerState != PlayerState.Falling && _currentPlayerState != PlayerState.Jumping )
         {
-            if (horizontalForce != 0)
+            if (horizontalForce != 0 && (_currentPlayerState != PlayerState.Take_Damage))
             {
                 ChangeAnimationState(PlayerRun);
                 _currentPlayerState = PlayerState.Running;
@@ -113,6 +133,17 @@ public class PlayerController : MonoBehaviour
                 _currentPlayerState = PlayerState.Idle;
             }
         }
+        
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            _animator.SetBool("Defend", true);
+            _currentPlayerState = PlayerState.Defending;
+        }
+        else
+        {
+            _animator.SetBool("Defend", false);
+        }
+        
     }
 
    
@@ -167,15 +198,27 @@ public class PlayerController : MonoBehaviour
         gameObject.transform.localScale = currentScale;
 
         _facingRight = !_facingRight; 
-
     }
     
+    //Used in goblin DamagePlayer() function
     public void PlayDamageAnimation()
     {
-        // Assuming you have a "TakeDamage" trigger parameter in your Animator controller.
-        _animator.SetTrigger("Take_Damage");
-    }
-    
+        if (!(_animator.GetBool("Defend")))
+        {
+            bool isPlayerDead = barHandler.TakeDamage(50);
 
+            if (isPlayerDead)
+            {
+                Debug.Log("dead");
+                _animator.SetTrigger("Death");
+            }
+            else
+            {
+                _animator.SetTrigger("Take_Damage");
+                _currentPlayerState = PlayerState.Take_Damage;
+            }
+        }
+    }
 }
+
 

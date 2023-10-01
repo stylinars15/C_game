@@ -18,6 +18,7 @@ public class Goblin : MonoBehaviour
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private PlayerController playerController;
+    
     private float cooldownTimer = Mathf.Infinity;
     private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
@@ -93,7 +94,8 @@ public class Goblin : MonoBehaviour
     // Called when goblin SLASHES
     private void DamagePlayer()
     {
-        if (playerInsight())
+        // check if player is within attackrange
+        if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
             playerController.PlayDamageAnimation();
         }
@@ -118,7 +120,6 @@ public class Goblin : MonoBehaviour
             animator.SetTrigger("Take_Hit");
         }
     }
-    
     
 
 }
