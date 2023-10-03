@@ -111,14 +111,19 @@ public class Goblin : MonoBehaviour
             _currentHealth = 0; // Ensure health doesn't go negative
             Debug.Log("dead"); // Add this line for debugging
             animator.SetTrigger("Death");
-            polygonCollider.enabled = false;
-            boxCollider.enabled = false;
-            this.enabled = false;
+            DisableGoblin();
         }
         else
         {
             animator.SetTrigger("Take_Hit");
         }
+    }
+
+    public void DisableGoblin()
+    {
+        polygonCollider.enabled = false;
+        boxCollider.enabled = false;
+        this.enabled = false;
     }
     
 
