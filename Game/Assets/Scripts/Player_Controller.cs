@@ -7,12 +7,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private Goblin goblin;
     [SerializeField] private EnemySpawner enemySpawner;
+    public LayerMask enemyLayers;
+    public Transform defendPoint;
 
     //player movent variables 
     private float _moveSpeed; 
     private float _jumpForce;
+    
     private bool  _jumpState;
+    private bool  _isDefending;
     private bool _canMove = true;
+    
     private float _moveHorizontal; 
     private float _moveVertical; 
     
@@ -146,11 +151,24 @@ public class PlayerController : MonoBehaviour
             {
                 _animator.SetBool(Defend, true);
                 _currentPlayerState = PlayerState.Defending;
+
+                if (DefendDirection())
+                {
+                    _isDefending = true;
+                }
+                else
+                {
+                    _isDefending = false;
+                }
+                Debug.Log("Is Defending: " + _isDefending);
             }
             else
             {
                 _animator.SetBool(Defend, false);
+                _isDefending = false;
             }
+            
+           
         }
         
     }
@@ -211,11 +229,12 @@ public class PlayerController : MonoBehaviour
     }
     
     //Used in goblin DamagePlayer() function
-    public void PlayDamageAnimation()
+    public void PlayDamageAnimation(int damageAmount)
     {
-        if (!(_animator.GetBool(Defend)))
+        // we check if the player is defending and if player is facing the right way
+        if (!_isDefending)
         {
-            bool isPlayerDead = barHandler.TakeDamage(50);
+            bool isPlayerDead = barHandler.TakeDamage(damageAmount);
 
             if (isPlayerDead)
             {
@@ -246,6 +265,28 @@ public class PlayerController : MonoBehaviour
         goblin.DisableGoblin();
         // DisableSpawnedEnemies
         enemySpawner.DisableSpawnedEnemies();
+    }
+    
+    
+    private bool DefendDirection()
+    {
+        // Detect enemies in the attack range using OverlapCircleAll
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(defendPoint.position, 0.5f, enemyLayers);
+        foreach (Collider2D enemyCollider in hitEnemies)
+        {
+            // Check if the collider is not a trigger collider
+            if (!enemyCollider.isTrigger)
+            {
+                // Check if the collider has a Goblin component
+                Goblin enemy = enemyCollider.GetComponent<Goblin>();
+                if (enemy != null)
+                {
+                    return true;
+                }
+            }
+        }
+        // No enemy found in front of the player
+        return false;
     }
 }
 

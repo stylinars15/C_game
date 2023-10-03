@@ -1169,6 +1169,10 @@ MonoBehaviour:
   barHandler: {fileID: 1648768148}
   goblin: {fileID: 1175858508}
   enemySpawner: {fileID: 1686906025}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  defendPoint: {fileID: 966357175}
 --- !u!95 &424158068
 Animator:
   serializedVersion: 5

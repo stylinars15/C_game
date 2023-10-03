@@ -7,9 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject enemyPrefab;
 
-    private float xSpawnRange = 10f; // The range on the X-axis around the player.
     private float fixedYSpawn = -1.78f; // The fixed Y position for spawning.
-    private float spawnInterval = 5f; // Time interval between enemy spawns.
+    private float spawnInterval = 500f; // Time interval between enemy spawns.
     private float nextSpawnTime = 0f;
 
     // List to keep track of spawned enemies

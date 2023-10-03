@@ -97,7 +97,7 @@ public class Goblin : MonoBehaviour
         // check if player is within attackrange
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
-            playerController.PlayDamageAnimation();
+            playerController.PlayDamageAnimation(5);
         }
     }
     
