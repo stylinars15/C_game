@@ -2,10 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 
 public class PlayerController : MonoBehaviour
 {
+    
+    public CinemachineVirtualCamera stillCamera;
+    public CinemachineVirtualCamera followCamera;
+    
+    
+    
     private Rigidbody2D _rb2D;
     [SerializeField] private BarHandler barHandler;
     
@@ -68,6 +75,19 @@ public class PlayerController : MonoBehaviour
             _moveHorizontal = Input.GetAxisRaw("Horizontal");
             _moveVertical = Input.GetAxisRaw("Vertical");
         }
+        
+        if (transform.position.x > -1.93f)
+        {
+            followCamera.gameObject.SetActive(true);
+            stillCamera.gameObject.SetActive(false);
+        }
+        else
+        {
+            followCamera.gameObject.SetActive(false);
+            stillCamera.gameObject.SetActive(true);
+        }
+        
+        
     }
   
     private void FixedUpdate()
@@ -219,6 +239,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
+
+    
 }
 
 
