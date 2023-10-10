@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform; // Reference to the player's transform
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private Goblin goblin;
+    [SerializeField] private FlyingEye _flyingEye;
     [SerializeField] private EnemySpawner enemySpawner;
     public LayerMask enemyLayers;
     public Transform defendPoint;
@@ -263,6 +264,7 @@ public class PlayerController : MonoBehaviour
         boxCollider.enabled = false;
         // Disable first goblin
         goblin.DisableGoblin();
+        _flyingEye.Disable_FLying_eye();
         // DisableSpawnedEnemies
         enemySpawner.DisableSpawnedEnemies();
     }

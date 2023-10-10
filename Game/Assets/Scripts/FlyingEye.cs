@@ -1,38 +1,36 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblin : MonoBehaviour
+public class FlyingEye : MonoBehaviour
 {
     // Start is called before the first frame update
     // Reference to the animator for player animations
     public Animator animator;
-    public int maxHealth = 100;
+    private int _maxHealth = 100;
     int _currentHealth;
 
-    private float attackCooldown = 2f;
-    private float attackRange = 1.9f;
-    [SerializeField] private int damage;
+    private float _attackCooldown = 2f;
+    private float attackRange = 1.8f;
+    private int damage = 10;
     [SerializeField] private BoxCollider2D boxCollider;
-    [SerializeField] private PolygonCollider2D polygonCollider;
+    public CapsuleCollider2D capsuleCollider;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private PlayerController playerController;
     
     private float cooldownTimer = Mathf.Infinity;
-    private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
+    private float movementSpeed = 2.0f; 
     private Transform playerTransform;
     private bool isAttacking = false;
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    private static readonly int Attack = Animator.StringToHash("Attack");
-    private static readonly int TakeHit = Animator.StringToHash("Take_Hit");
+    
+    //animations
+    private static readonly int TakeHit = Animator.StringToHash("Take_hit");
     private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Flying = Animator.StringToHash("Flying");
 
     void Start()
     { 
-        _currentHealth = maxHealth;
+        _currentHealth = _maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
-        
     }
     
     private void Update()
@@ -43,13 +41,13 @@ public class Goblin : MonoBehaviour
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
                 // Start attacking when in range.
-                animator.SetBool(IsMoving, false);
+                animator.SetTrigger(Flying);
                 isAttacking = true;
                 animator.SetTrigger(Attack);
                 cooldownTimer = 0;
               
             }
-            else if (playerInsight())
+            else if (PlayerInsight())
             {
                 float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
                 Vector3 localScale = transform.localScale;
@@ -61,27 +59,22 @@ public class Goblin : MonoBehaviour
                 }
 
                 // If the player is in sight, move towards the player.
-                animator.SetBool(IsMoving, true);
                 Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-            }
-            else
-            {
-                animator.SetBool(IsMoving, false);
             }
         }
         else 
         {
             // If attacking, check the attack cooldown.
             cooldownTimer += Time.deltaTime;
-            if (cooldownTimer >= attackCooldown)
+            if (cooldownTimer >= _attackCooldown)
             {
                 isAttacking = false; // Reset attack state.
             }
         }
     }
     
-    private bool playerInsight()
+    private bool PlayerInsight()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
             boxCollider.bounds.center,
@@ -92,10 +85,10 @@ public class Goblin : MonoBehaviour
     }
     
     
-    // Called when goblin SLASHES
+    // Called when enemy attacks
     private void DamagePlayer()
     {
-        // check if player is within attackrange
+        // check if player is within attack range
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
             playerController.PlayDamageAnimation(5);
@@ -112,7 +105,7 @@ public class Goblin : MonoBehaviour
             _currentHealth = 0; // Ensure health doesn't go negative
             Debug.Log("dead"); // Add this line for debugging
             animator.SetTrigger(Death);
-            DisableGoblin();
+            Disable_FLying_eye();
         }
         else
         {
@@ -120,9 +113,10 @@ public class Goblin : MonoBehaviour
         }
     }
 
-    public void DisableGoblin()
+    public void Disable_FLying_eye()
     {
-        polygonCollider.enabled = false;
+        print("inside");
+        capsuleCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
     }
