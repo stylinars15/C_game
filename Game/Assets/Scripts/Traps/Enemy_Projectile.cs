@@ -41,7 +41,7 @@ public class Enemy_Projectile : MonoBehaviour
         if (tag == "Player")
         {
             gameObject.SetActive(false);
-            playerController.PlayDamageAnimation(50);
+            playerController.PlayDamageAnimation(1);
         }
         
     }
