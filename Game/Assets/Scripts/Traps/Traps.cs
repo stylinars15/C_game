@@ -10,14 +10,14 @@ public class Traps : MonoBehaviour
     [SerializeField] private Transform ArrowPoint; 
     [SerializeField] private GameObject[] arrows;
    
-    public Animator animation;
-
+    public Animator ani;
 
     public Dectection_Zone detectionzone_1,  detectionzone_2; 
 
    
    public void ShootArrow()
-    {
+   {
+       CoolDownTimer = 0; 
         int arrowIndex = FindArrows();
         if (arrowIndex >= 0 && arrowIndex < arrows.Length)
         {
@@ -33,9 +33,15 @@ public class Traps : MonoBehaviour
             }
         }
     }
-   
 
-    private int FindArrows()
+   private void Start()
+   {
+       //We are setting cool down timer to attack cooldown, so that when enemy is detected the trap is shooting immediately
+       CoolDownTimer = AttackCooldown;
+   }
+
+
+   private int FindArrows()
     {
         
         for (int i = 0; i < arrows.Length; i++)
@@ -52,39 +58,31 @@ public class Traps : MonoBehaviour
 
     private void Update()
     {
+        
         if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0) 
-            animation.SetBool("Detected", true);
+            ani.SetBool("Detected", true);
         else 
-            animation.SetBool("Detected", false);
+            ani.SetBool("Detected", false);
 
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0)
         {
             CoolDownTimer += Time.deltaTime;
-
+            print(CoolDownTimer);
+            
             if (CoolDownTimer >= AttackCooldown)
             {
-                animation.SetBool("Shoot", true);
-
-                // Check if the animation has finished playing
-                AnimatorStateInfo stateInfo = animation.GetCurrentAnimatorStateInfo(0);
-                if (stateInfo.normalizedTime >= 0.1f)
-                {
-                    // The animation has finished playing (normalizedTime == 1.0)
-                    // Perform your action here, e.g., call ShootArrow()
-                    //ShootArrow();
-
-                    // Reset the cooldown timer
-                    CoolDownTimer = 0f;
-                }
+                ani.SetBool("Shoot", true);
             }
+            
+            
+
         }
         else
         {
-            animation.SetBool("Shoot", false);
+            ani.SetBool("Shoot", false);
         }
+        
     }
     
-
-
-  
+    
 }

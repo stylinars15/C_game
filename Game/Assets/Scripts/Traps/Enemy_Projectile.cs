@@ -9,11 +9,15 @@ public class Enemy_Projectile : MonoBehaviour
     [SerializeField] private float speed; 
     [SerializeField] private float ResetTime;
     private float LifeTime;
+    public PlayerController playerController; 
+    
+    
 
 
     public void ActiveProjectile()
     {
-        LifeTime = 0; 
+        //Lifetime is how long the projectile last if it hits nothing
+        LifeTime = 1; 
         gameObject.SetActive(true);
     }
     
@@ -23,10 +27,10 @@ public class Enemy_Projectile : MonoBehaviour
 
         float movementspeed = speed * Time.deltaTime; 
         transform.Translate(movementspeed,0,0);
-
+        
         LifeTime += Time.deltaTime;
         if (LifeTime > ResetTime) 
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         
     }
 
@@ -37,6 +41,7 @@ public class Enemy_Projectile : MonoBehaviour
         if (tag == "Player")
         {
             gameObject.SetActive(false);
+            playerController.PlayDamageAnimation();
         }
         
     }
