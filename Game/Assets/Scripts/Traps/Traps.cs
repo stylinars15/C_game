@@ -84,5 +84,13 @@ public class Traps : MonoBehaviour
         
     }
     
+    public void Disable_Traps()
+    {
+        print("inside");
+        detectionzone_1.enabled = false;
+        detectionzone_2.enabled = false;
+        this.enabled = false;
+    }
+    
     
 }

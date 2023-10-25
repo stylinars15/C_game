@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject prefabEye;
 
     public float yCoord; // to test placement 
-    private float _spawnInterval = 5f; // Time interval between enemy spawns.
+    public float _spawnInterval = 5f; // Time interval between enemy spawns.
     private float _nextSpawnTime;
     private GameObject _spawnedEnemy;
     
