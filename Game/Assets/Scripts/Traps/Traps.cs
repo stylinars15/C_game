@@ -87,6 +87,7 @@ public class Traps : MonoBehaviour
     public void Disable_Traps()
     {
         print("inside");
+        ani.SetBool("Detected", false); //trap off
         detectionzone_1.enabled = false;
         detectionzone_2.enabled = false;
         this.enabled = false;
