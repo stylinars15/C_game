@@ -4,10 +4,14 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb2D;
     public Transform playerTransform; // Reference to the player's transform
+    
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private Goblin goblin;
     [SerializeField] private FlyingEye _flyingEye;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private Traps traps;
+    
     public LayerMask enemyLayers;
     public Transform defendPoint;
 
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
         
         _moveSpeed = 1f; 
-        _jumpForce = 20f; 
+        _jumpForce = 25f; 
         _jumpState = false;
         
     }
@@ -262,11 +266,18 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
-        // Disable first goblin
+        // Disable first enemies
         goblin.DisableGoblin();
         _flyingEye.Disable_FLying_eye();
+        
         // DisableSpawnedEnemies
         enemySpawner.DisableSpawnedEnemies();
+        
+        // DisableTraps
+        traps.Disable_Traps();
+        
+        //gameover screen
+        gameManager.Setup();
     }
     
     

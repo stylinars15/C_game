@@ -115,7 +115,6 @@ public class FlyingEye : MonoBehaviour
 
     public void Disable_FLying_eye()
     {
-        print("inside");
         capsuleCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
