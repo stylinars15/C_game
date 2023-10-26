@@ -12,12 +12,14 @@ public class Traps : MonoBehaviour
    
     public Animator ani;
 
-    public Dectection_Zone detectionzone_1,  detectionzone_2; 
+    public Dectection_Zone detectionzone_1,  detectionzone_2;
+
+    private BarHandler healthbar; 
 
    
    public void ShootArrow()
    {
-       CoolDownTimer = 0; 
+        CoolDownTimer = 0; 
         int arrowIndex = FindArrows();
         if (arrowIndex >= 0 && arrowIndex < arrows.Length)
         {
@@ -38,6 +40,11 @@ public class Traps : MonoBehaviour
    {
        //We are setting cool down timer to attack cooldown, so that when enemy is detected the trap is shooting immediately
        CoolDownTimer = AttackCooldown;
+    
+       healthbar = FindObjectOfType<BarHandler>();
+       
+
+
    }
 
 
@@ -59,12 +66,19 @@ public class Traps : MonoBehaviour
     private void Update()
     {
         
-        if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0) 
-            ani.SetBool("Detected", true);
-        else 
-            ani.SetBool("Detected", false);
 
-        if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0)
+        if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
+        {
+            ani.SetBool("Detected", true);
+            
+        }
+        else
+        {
+            ani.SetBool("Detected", false);
+            CoolDownTimer = AttackCooldown;     // doing this so the trap will attack immediately when it detects the player again
+        }
+
+        if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 )
         {
             CoolDownTimer += Time.deltaTime;
             print(CoolDownTimer);
@@ -72,23 +86,23 @@ public class Traps : MonoBehaviour
             if (CoolDownTimer >= AttackCooldown)
             {
                 ani.SetBool("Shoot", true);
+            }else
+            {
+                ani.SetBool("Shoot", false);
             }
             
             
 
         }
-        else
-        {
-            ani.SetBool("Shoot", false);
-        }
+        
         
     }
     
     public void Disable_Traps()
     {
-        print("inside");
-        detectionzone_1.enabled = false;
-        detectionzone_2.enabled = false;
+        Debug.Log("inside");
+        ani.SetBool("Detected", false);
+        ani.SetBool("Shoot", false);
         this.enabled = false;
     }
     
