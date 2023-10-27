@@ -20,6 +20,7 @@ public class Goblin : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     
     private float cooldownTimer = Mathf.Infinity;
+    public bool isDead { get; private set; }
     private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
     private bool isAttacking = false;
@@ -110,9 +111,10 @@ public class Goblin : MonoBehaviour
         if(_currentHealth <= 0)
         {
             _currentHealth = 0; // Ensure health doesn't go negative
-            Debug.Log("dead"); // Add this line for debugging
+            Debug.Log("dead"); 
             animator.SetTrigger(Death);
             DisableGoblin();
+            isDead = true;
         }
         else
         {

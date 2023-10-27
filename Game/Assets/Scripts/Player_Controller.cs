@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_canMove)
         {
-                // Determine the movement direction and apply horizontal force.
+            // Determine the movement direction and apply horizontal force.
             if(IsAnimationPlaying(_animator, "Take_Damage"))
             {
                 _currentPlayerState = PlayerState.TakeDamage;
@@ -172,7 +172,6 @@ public class PlayerController : MonoBehaviour
                 _animator.SetBool(Defend, false);
                 _isDefending = false;
             }
-            
            
         }
         

@@ -17,6 +17,7 @@ public class FlyingEye : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     
     private float cooldownTimer = Mathf.Infinity;
+    public bool isDead { get; private set; }
     private float movementSpeed = 2.0f; 
     private Transform playerTransform;
     private bool isAttacking = false;
@@ -106,6 +107,7 @@ public class FlyingEye : MonoBehaviour
             Debug.Log("dead"); // Add this line for debugging
             animator.SetTrigger(Death);
             Disable_FLying_eye();
+            isDead = true;
         }
         else
         {

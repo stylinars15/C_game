@@ -81,7 +81,6 @@ public class Traps : MonoBehaviour
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 )
         {
             CoolDownTimer += Time.deltaTime;
-            print(CoolDownTimer);
             
             if (CoolDownTimer >= AttackCooldown)
             {
@@ -90,17 +89,12 @@ public class Traps : MonoBehaviour
             {
                 ani.SetBool("Shoot", false);
             }
-            
-            
 
         }
-        
-        
     }
     
     public void Disable_Traps()
     {
-        Debug.Log("inside");
         ani.SetBool("Detected", false);
         ani.SetBool("Shoot", false);
         this.enabled = false;
