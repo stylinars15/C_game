@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +17,15 @@ public class PlayerController : MonoBehaviour
     
     
     private Rigidbody2D _rb2D;
+<<<<<<< Updated upstream
     [SerializeField] private BarHandler barHandler;
+=======
+
+    public CinemachineVirtualCamera stillcam;
+    public CinemachineVirtualCamera followcam;
+
+    
+>>>>>>> Stashed changes
     
     //player movent variables 
     private float _moveSpeed; 
@@ -153,6 +164,7 @@ public class PlayerController : MonoBehaviour
                 _currentPlayerState = PlayerState.Idle;
             }
         }
+<<<<<<< Updated upstream
         
         if (Input.GetKey(KeyCode.DownArrow))
         {
@@ -164,6 +176,23 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Defend", false);
         }
         
+=======
+
+
+        if (transform.position.x < 4.1f)
+        {
+            stillcam.Priority = 10; // Higher priority for the stillcam
+            followcam.Priority = 0; // Lower priority for the followcam
+        }
+        else
+        {
+            stillcam.Priority = 0; // Lower priority for the stillcam
+            followcam.Priority = 10; // Higher priority for the followcam
+        }
+        
+        
+        
+>>>>>>> Stashed changes
     }
 
    
