@@ -19,8 +19,9 @@ public class Player_Combat : MonoBehaviour
     public float attackRate = 1f;
     float nextAttack = 0f;
 	private Rigidbody2D _rb2D;
+    private static readonly int Attack1 = Animator.StringToHash("Attack");
 
-	void Start()
+    void Start()
 	{
 	_rb2D = gameObject.GetComponent<Rigidbody2D>();
 	}
@@ -44,7 +45,7 @@ public class Player_Combat : MonoBehaviour
     void Attack()
     {
         // Trigger the attack animation in the animator
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(Attack1);
 
         // Detect enemies in the attack range using OverlapCircleAll
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -54,11 +55,17 @@ public class Player_Combat : MonoBehaviour
             // Check if the collider is not a trigger collider
             if (!enemyCollider.isTrigger)
             {
-                // Check if the collider has a Goblin component and take damage
+                // Check if the collider has a component and take damage
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 if (enemy != null)
                 {
                     enemy.TakeDamage(attackDamage);
+                }
+                
+                FlyingEye enemy2 = enemyCollider.GetComponent<FlyingEye>();
+                if (enemy2 != null)
+                {
+                    enemy2.TakeDamage(attackDamage);
                 }
             }
         }
