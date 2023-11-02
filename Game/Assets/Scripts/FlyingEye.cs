@@ -10,11 +10,10 @@ public class FlyingEye : MonoBehaviour
 
     private float _attackCooldown = 2f;
     private float attackRange = 1.8f;
-    private int damage = 10;
     [SerializeField] private BoxCollider2D boxCollider;
     public CapsuleCollider2D capsuleCollider;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private PlayerController playerController;
+    PlayerController playerController;
     
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
@@ -32,13 +31,19 @@ public class FlyingEye : MonoBehaviour
     { 
         _currentHealth = _maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        
     }
     
     private void Update()
     {
-        if (!isAttacking)
+        if (IsAnimationPlaying(animator, "Take_hit"))
         {
-            // Check if the Goblin is within attack range.
+            
+        }
+        else if (!isAttacking)
+        {
+            // Check is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
                 // Start attacking when in range.
@@ -120,6 +125,16 @@ public class FlyingEye : MonoBehaviour
         capsuleCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
+    }
+    
+    bool IsAnimationPlaying(Animator animator, string stateName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && 
+            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            return true;
+        }
+        return false;
     }
     
 

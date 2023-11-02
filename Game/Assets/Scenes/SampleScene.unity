@@ -1350,6 +1350,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 966357175}
+  - {fileID: 1026009328}
   - {fileID: 1280043863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1402,8 +1403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 424158064}
   barHandler: {fileID: 1648768148}
-  goblin: {fileID: 0}
-  _flyingEye: {fileID: 0}
   enemySpawner: {fileID: 1686906025}
   gameManager: {fileID: 1677180745}
   traps: {fileID: 1836340890}
@@ -1491,12 +1490,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 424158068}
   attackPoint: {fileID: 966357175}
+  attackPoint1: {fileID: 1026009328}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 192
-  attackDamage: 22
-  attackRange: 0.5
-  attackRate: 2
 --- !u!1 &437440392
 GameObject:
   m_ObjectHideFlags: 0
@@ -2816,6 +2813,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996981500}
   m_CullTransparentMesh: 1
+--- !u!1 &1026009327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1026009328}
+  m_Layer: 3
+  m_Name: Attack_Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1026009328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026009327}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.18, y: -1.37, z: 0}
+  m_LocalScale: {x: 0.004523397, y: 0.00006637412, z: 0.00033187063}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 424158064}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1112076966
 GameObject:
   m_ObjectHideFlags: 0
@@ -3948,7 +3976,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677180747}
-  - component: {fileID: 1677180746}
   - component: {fileID: 1677180745}
   m_Layer: 0
   m_Name: GameManager
@@ -3967,18 +3994,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5dbc963de29541d29e88642b28da3a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1677180746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1677180744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef2b277a60494c01adef09a1e11d4ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1677180747
