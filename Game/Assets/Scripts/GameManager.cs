@@ -8,9 +8,17 @@ public class GameManager : MonoBehaviour
         gameObject.SetActive(true);
     }
     
-    public void MainMenu()
+    public void MainMenuButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
-
+    
+    public void ReplayButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+    }
+    
+    public void NextLevel()
+    {
+    }
 }

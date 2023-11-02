@@ -9,27 +9,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject prefabEye;
 
     public float yCoord; // to test placement 
-    public float _spawnInterval = 5f; // Time interval between enemy spawns.
+    public float _spawnInterval; // Time interval between enemy spawns.
     private float _nextSpawnTime;
     private GameObject _spawnedEnemy;
+    private readonly int maxActiveEnemies = 2; // Set the maximum number of active enemies
     
     // List to keep track of spawned enemies
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
 
     private void Update()
     {
-        // Check if playerController is not null before using it
-        if (playerController != null)
+        if (playerController != null && Time.time >= _nextSpawnTime)
         {
-            // Check if it's time to spawn a new enemy.
-            if (Time.time >= _nextSpawnTime)
+            CalculateNextSpawnTime();
+            if (CountActiveEnemies() < maxActiveEnemies)
             {
                 SpawnEnemy();
-                CalculateNextSpawnTime();
             }
         }
     }
-
+    
     private void SpawnEnemy()
     {
         float randomXSpawn;
@@ -138,5 +137,27 @@ public class EnemySpawner : MonoBehaviour
         // Disable the EnemySpawner script itself
         enabled = false;
     }
+    
+    private int CountActiveEnemies()
+    {
+        int activeEnemies = 0;
+        foreach (var enemy in _spawnedEnemies)
+        {
+            if (enemy != null)
+            {
+                if (enemy.TryGetComponent<Goblin>(out Goblin goblin) && !goblin.isDead)
+                {
+                    activeEnemies++;
+                }
+                else if (enemy.TryGetComponent<FlyingEye>(out FlyingEye flyingEye) && !flyingEye.isDead)
+                {
+                    activeEnemies++;
+                }
+            }
+        }
+        return activeEnemies;
+    }
+
+
 }
 
