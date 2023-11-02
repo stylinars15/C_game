@@ -1,9 +1,13 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb2D;
     public Transform playerTransform; // Reference to the player's transform
+    
+    public CinemachineVirtualCamera stillcam;
+    public CinemachineVirtualCamera followcam;
     
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private Goblin goblin;
@@ -84,6 +88,21 @@ public class PlayerController : MonoBehaviour
                 _moveVertical = Input.GetAxisRaw("Vertical");
             }
         }
+        
+        if (transform.position.x < 4.1f)
+        {
+            stillcam.Priority = 10; // Higher priority for the stillcam
+            followcam.Priority = 0; // Lower priority for the followcam
+        }
+        else
+        {
+            stillcam.Priority = 0; // Lower priority for the stillcam
+            followcam.Priority = 10; // Higher priority for the followcam
+        }
+        
+        
+        
+        
     }
   
     private void FixedUpdate()
