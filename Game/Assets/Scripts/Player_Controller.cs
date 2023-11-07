@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
     public Transform playerTransform; // Reference to the player's transform
     
     [SerializeField] private BarHandler barHandler;
-    [SerializeField] private Goblin goblin;
-    [SerializeField] private FlyingEye _flyingEye;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Traps traps;
@@ -165,7 +163,6 @@ public class PlayerController : MonoBehaviour
                 {
                     _isDefending = false;
                 }
-                Debug.Log("Is Defending: " + _isDefending);
             }
             else
             {
@@ -215,11 +212,7 @@ public class PlayerController : MonoBehaviour
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
-        
+        return false;
     }
 
     void Flip()
@@ -242,7 +235,6 @@ public class PlayerController : MonoBehaviour
 
             if (isPlayerDead)
             {
-                Debug.Log("dead");
                 _animator.SetTrigger(Death);
                 DisableGame();
             }
@@ -265,10 +257,6 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
-        // Disable first enemies
-        goblin.DisableGoblin();
-        _flyingEye.Disable_FLying_eye();
-        
         // DisableSpawnedEnemies
         enemySpawner.DisableSpawnedEnemies();
         
@@ -284,6 +272,7 @@ public class PlayerController : MonoBehaviour
     {
         // Detect enemies in the attack range using OverlapCircleAll
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(defendPoint.position, 0.5f, enemyLayers);
+        
         foreach (Collider2D enemyCollider in hitEnemies)
         {
             // Check if the collider is not a trigger collider
@@ -291,7 +280,8 @@ public class PlayerController : MonoBehaviour
             {
                 // Check if the collider has a Goblin component
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
-                if (enemy != null)
+                FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
+                if (enemy != null || enemy1 != null)
                 {
                     return true;
                 }

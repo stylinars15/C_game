@@ -8,32 +8,31 @@ public class Goblin : MonoBehaviour
     // Start is called before the first frame update
     // Reference to the animator for player animations
     public Animator animator;
-    public int maxHealth = 100;
+    private int maxHealth = 100;
     int _currentHealth;
 
     private float attackCooldown = 2f;
     private float attackRange = 1.9f;
-    [SerializeField] private int damage;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private PlayerController playerController;
-    
+
+    private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
     private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
-    private bool isAttacking = false;
+    private bool isAttacking;
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int Attack = Animator.StringToHash("Attack");
-    private static readonly int TakeHit = Animator.StringToHash("Take_Hit");
+    private static readonly int TakeHit = Animator.StringToHash("TakeHit");
     private static readonly int Death = Animator.StringToHash("Death");
 
     void Start()
     { 
         _currentHealth = maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
-        
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     
     private void Update()
@@ -43,15 +42,16 @@ public class Goblin : MonoBehaviour
             // Check if the Goblin is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
+                print("1");
                 // Start attacking when in range.
                 animator.SetBool(IsMoving, false);
                 isAttacking = true;
                 animator.SetTrigger(Attack);
                 cooldownTimer = 0;
-              
             }
             else if (playerInsight())
             {
+                print("2");
                 float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
                 Vector3 localScale = transform.localScale;
                 // Flip the sprite if the direction is different.
@@ -107,6 +107,7 @@ public class Goblin : MonoBehaviour
     public void TakeDamage(int damage) 
     {
         _currentHealth -= damage;
+        animator.SetBool(IsMoving,false);
 
         if(_currentHealth <= 0)
         {
@@ -127,6 +128,16 @@ public class Goblin : MonoBehaviour
         polygonCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
+    }
+    
+    bool IsAnimationPlaying(Animator animator, string stateName)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && 
+            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            return true;
+        }
+        return false;
     }
     
 
