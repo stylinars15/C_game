@@ -16,8 +16,8 @@ TagManager:
   - UI
   - Goblins
   - Flying_eye
-  - 
-  - 
+  - Ground
+  - Slopes
   - Enemy
   - Traps
   - 
@@ -41,9 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Foreground
     uniqueID: 3868319413
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

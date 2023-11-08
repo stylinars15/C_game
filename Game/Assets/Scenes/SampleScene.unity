@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.501111, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.500638, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1216,6 +1216,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 156407736075276765, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 156407736075276765, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 646653226931128179, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 646653226931128179, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025435277941570894, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025435277941570894, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647905686235732374, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647905686235732374, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1837077095032027315, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
@@ -1272,6 +1304,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3523571312877305569, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523571312877305569, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4257898126703211187, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
@@ -1280,10 +1320,50 @@ PrefabInstance:
       propertyPath: AttackCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4765379980972927652, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765379980972927652, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829230373072268639, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829230373072268639, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397600063434581854, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397600063434581854, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587110260676088584, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5587110260676088584, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5912506297308080801, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 424158066}
+    - target: {fileID: 6484158301972080371, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6484158301972080371, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6971818890378855837, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
@@ -1303,6 +1383,14 @@ PrefabInstance:
     - target: {fileID: 8692158914646104779, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_Name
       value: Arrowtrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905261006455041267, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8905261006455041267, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1483,6 +1571,10 @@ MonoBehaviour:
   enemySpawner: {fileID: 1686906025}
   gameManager: {fileID: 1677180745}
   traps: {fileID: 1836340890}
+  SlopeCheckDistance: 0
+  WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 192
@@ -2160,7 +2252,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.501111, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.500638, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

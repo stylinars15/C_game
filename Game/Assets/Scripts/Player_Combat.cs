@@ -13,7 +13,8 @@ public class PlayerCombat : MonoBehaviour
 
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
-    // testing
+    
+
 
     private float range;
     private float _attackRate = 2f; // Attacks per sec
@@ -54,7 +55,9 @@ public class PlayerCombat : MonoBehaviour
         }
 
     }
-
+    
+   
+    
     void Attack()
     {
         // Rest of the function remains the same
@@ -82,6 +85,8 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+    
+    
 
     // Called when animation is played
     private void SpecialAttack()
