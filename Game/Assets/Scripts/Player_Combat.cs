@@ -79,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
                     _resolveBuildUp++;
                     enemy2.TakeDamage(20);
                 }
-                
+
                 Boss enemy3 = enemyCollider.GetComponent<Boss>();
                 if (enemy3 != null)
                 {
@@ -129,13 +129,14 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy2.TakeDamage(20);
                 }
-                
-                Boss enemy3 = enemyCollider.GetComponent<Boss>();
+
+				Boss enemy3 = enemyCollider.GetComponent<Boss>();
                 if (enemy3 != null)
                 {
                     _resolveBuildUp++;
                     enemy3.TakeDamage(20);
                 }
+                
             }
         }
     }

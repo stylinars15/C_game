@@ -3,24 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BossScript : MonoBehaviour
+public class Boss : MonoBehaviour
 {
+    // Start is called before the first frame update
     // Reference to the animator for player animations
     public Animator animator;
-    public int maxHealth = 300;
+    private int maxHealth = 300;
     int _currentHealth;
-    
-    private float attackCooldown = 1.8f;
-    private float attackRange = 2.6f;
+
+    private float attackCooldown = 1.7f;
+    private float attackRange = 2.2f;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private LayerMask playerLayer;
-    
+
     private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
-    private float movementSpeed = 2.0f; // Speed at which the Goblin moves towards the player.
+    private float movementSpeed = 2.7f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
     private bool isAttacking;
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
@@ -28,23 +28,20 @@ public class BossScript : MonoBehaviour
     private static readonly int TakeHit = Animator.StringToHash("TakeHit");
     private static readonly int Death = Animator.StringToHash("Death");
 
-    
     void Start()
-    {
+    { 
         _currentHealth = maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>(); 
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         if (!isAttacking)
         {
-            // Check if boss is within attack range.
+            // Check if the boss is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
-                print("1");
                 // Start attacking when in range.
                 animator.SetBool(IsMoving, false);
                 isAttacking = true;
@@ -53,7 +50,6 @@ public class BossScript : MonoBehaviour
             }
             else if (playerInsight())
             {
-                print("2");
                 float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
                 Vector3 localScale = transform.localScale;
                 // Flip the sprite if the direction is different.
@@ -82,7 +78,10 @@ public class BossScript : MonoBehaviour
                 isAttacking = false; // Reset attack state.
             }
         }
+        
+        
     }
+    
     private bool playerInsight()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
@@ -100,7 +99,8 @@ public class BossScript : MonoBehaviour
         // check if player is within attackrange
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
-            playerController.PlayDamageAnimation(5);
+            print("Hello");
+            playerController.PlayDamageAnimation(20);
         }
     }
     
@@ -141,5 +141,5 @@ public class BossScript : MonoBehaviour
         return false;
     }
     
-    
+
 }
