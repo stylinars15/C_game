@@ -42,7 +42,6 @@ public class Goblin : MonoBehaviour
             // Check if the Goblin is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
-                print("1");
                 // Start attacking when in range.
                 animator.SetBool(IsMoving, false);
                 isAttacking = true;
@@ -51,7 +50,6 @@ public class Goblin : MonoBehaviour
             }
             else if (playerInsight())
             {
-                print("2");
                 float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
                 Vector3 localScale = transform.localScale;
                 // Flip the sprite if the direction is different.

@@ -16,7 +16,7 @@ public class PlayerCombat : MonoBehaviour
     // testing
 
     private float range;
-    private float _attackRate = 2f; // Attacks per sec
+    private float _attackRate = 1.8f; // Attacks per sec
     private int _specialAttackCounter; // Define a counter variable at the class level
     private int _resolveBuildUp; // For powerup
     float _nextAttack;
@@ -57,7 +57,6 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
-        // Rest of the function remains the same
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 1f, enemyLayers);
 
         foreach (Collider2D enemyCollider in hitEnemies)

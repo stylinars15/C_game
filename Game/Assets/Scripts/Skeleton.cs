@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlyingEye : MonoBehaviour
+public class Skeleton : MonoBehaviour
 {
     // Start is called before the first frame update
     // Reference to the animator for player animations
@@ -8,8 +8,8 @@ public class FlyingEye : MonoBehaviour
     private int _maxHealth = 100;
     int _currentHealth;
 
-    private float _attackCooldown = 2f;
-    private float attackRange = 1.8f;
+    private float _attackCooldown = 3f;
+    private float attackRange = 2.3f;
     [SerializeField] private BoxCollider2D boxCollider;
     public CapsuleCollider2D capsuleCollider;
     [SerializeField] private LayerMask playerLayer;
@@ -17,13 +17,16 @@ public class FlyingEye : MonoBehaviour
     
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
-    private float movementSpeed = 2.0f; 
+    private float movementSpeed = 0.8f;
     private Transform playerTransform;
     private bool isAttacking;
     
     //animations
-    private static readonly int TakeHit = Animator.StringToHash("Take_hit");
+    private static readonly int TakeHit = Animator.StringToHash("Takehit");
     private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Walk = Animator.StringToHash("Walk");
+    private static readonly int Shield = Animator.StringToHash("Shield");
+    private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Attack = Animator.StringToHash("Attack");
 
     void Start()
@@ -31,40 +34,46 @@ public class FlyingEye : MonoBehaviour
         _currentHealth = _maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        
     }
     
     private void Update()
     {
-        if (IsAnimationPlaying(animator, "Take_hit"))
-        {
-            
-        }
-        else if (!isAttacking)
+        if (!isAttacking)
         {
             // Check is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
+                animator.SetBool(Walk,false);
                 isAttacking = true;
-                animator.SetTrigger(Attack);
+                animator.SetBool(Attack,true);
                 cooldownTimer = 0;
-              
             }
             else if (PlayerInsight())
             {
-                float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
-                Vector3 localScale = transform.localScale;
-                // Flip the sprite if the direction is different.
-                if (direction > 0 && localScale.x < 0 || direction < 0 && localScale.x > 0)
+                // Check if the player is above the enemy by a certain threshold.
+                if (playerTransform.position.y > (transform.position.y+3.2))
                 {
-                    localScale.x *= -1;
-                    transform.localScale = localScale;
+                    animator.SetBool(Walk, false);
                 }
+                else
+                {
+                    animator.SetBool(Walk, true);
+                    float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+                    Vector3 localScale = transform.localScale;
+        
+                    // Flip the sprite if the direction is different.
+                    if ((direction > 0 && localScale.x < 0) || (direction < 0 && localScale.x > 0))
+                    {
+                        localScale.x *= -1;
+                        transform.localScale = localScale;
+                    }
 
-                // If the player is in sight, move towards the player.
-                Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+                    // If the player is in sight and not above, move towards the player.
+                    Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+                }
             }
+
         }
         else 
         {
@@ -73,6 +82,7 @@ public class FlyingEye : MonoBehaviour
             if (cooldownTimer >= _attackCooldown)
             {
                 isAttacking = false; // Reset attack state.
+                animator.SetBool(Attack,false);// Reset attack state.
             }
         }
     }
@@ -91,12 +101,15 @@ public class FlyingEye : MonoBehaviour
     // Called when enemy attacks
     private void DamagePlayer()
     {
-        // check if player is within attack range
+        // Check if the player is within attack range.
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
+            // Apply damage only if the player is in front of the enemy.
             playerController.PlayDamageAnimation(5);
         }
     }
+
+
     
     // USED IN PLAYER_COMBAT
     public void TakeDamage(int damage) 
@@ -106,9 +119,8 @@ public class FlyingEye : MonoBehaviour
         if(_currentHealth <= 0)
         {
             _currentHealth = 0; // Ensure health doesn't go negative
-            Debug.Log("dead"); // Add this line for debugging
             animator.SetTrigger(Death);
-            Disable_FLying_eye();
+            Disable_Skeleton();
             isDead = true;
         }
         else
@@ -117,7 +129,7 @@ public class FlyingEye : MonoBehaviour
         }
     }
 
-    public void Disable_FLying_eye()
+    public void Disable_Skeleton()
     {
         capsuleCollider.enabled = false;
         boxCollider.enabled = false;
