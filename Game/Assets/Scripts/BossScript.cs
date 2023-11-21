@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour
     private float attackRange = 2.2f;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private PolygonCollider2D polygonCollider;
-    [SerializeField] private LayerMask playerLayer;
+    public LayerMask playerLayer;
 
     private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
@@ -76,6 +76,7 @@ public class Boss : MonoBehaviour
             if (cooldownTimer >= attackCooldown)
             {
                 isAttacking = false; // Reset attack state.
+                cooldownTimer = 0;
             }
         }
         
@@ -93,7 +94,8 @@ public class Boss : MonoBehaviour
     }
     
     
-    // Called when boss SLASHES
+    
+    // Called when boss HITS
     private void DamagePlayer()
     {
         // check if player is within attackrange
@@ -103,6 +105,7 @@ public class Boss : MonoBehaviour
             playerController.PlayDamageAnimation(20);
         }
     }
+    
     
     // USED IN PLAYER_COMBAT
     public void TakeDamage(int damage) 
@@ -123,6 +126,18 @@ public class Boss : MonoBehaviour
             animator.SetTrigger(TakeHit);
         }
     }
+    
+    public void TriggerPlayerDamageFromAnimationEvent()
+    {
+        // Check if player is within attack range
+        if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
+        {
+            playerController.PlayDamageAnimation(20);
+        }
+    }
+
+    
+    
 
     public void DisableGoblin()
     {
