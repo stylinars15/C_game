@@ -13,7 +13,8 @@ public class PlayerCombat : MonoBehaviour
 
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
-    // testing
+    
+
 
     private float range;
     private float _attackRate = 1.8f; // Attacks per sec
@@ -54,7 +55,9 @@ public class PlayerCombat : MonoBehaviour
         }
 
     }
-
+    
+   
+    
     void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 1f, enemyLayers);
@@ -81,6 +84,8 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+    
+    
 
     // Called when animation is played
     private void SpecialAttack()
