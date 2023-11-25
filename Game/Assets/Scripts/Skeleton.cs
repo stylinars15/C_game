@@ -4,22 +4,24 @@ public class Skeleton : MonoBehaviour
 {
     // Start is called before the first frame update
     // Reference to the animator for player animations
+    public Transform attackPoint;
     public Animator animator;
     private int _maxHealth = 100;
     int _currentHealth;
 
-    private float _attackCooldown = 3f;
-    private float attackRange = 2.3f;
+    private float _attackCooldown = 4f;
+    public float attackRange;
     [SerializeField] private BoxCollider2D boxCollider;
     public CapsuleCollider2D capsuleCollider;
     [SerializeField] private LayerMask playerLayer;
-    PlayerController playerController;
+    public PlayerController playerController;
+    public Transform playerTransform;
     
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
     private float movementSpeed = 0.8f;
-    private Transform playerTransform;
     private bool isAttacking;
+    private bool isDefending;
     
     //animations
     private static readonly int TakeHit = Animator.StringToHash("Takehit");
@@ -32,21 +34,30 @@ public class Skeleton : MonoBehaviour
     void Start()
     { 
         _currentHealth = _maxHealth;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     
     private void Update()
     {
         if (!isAttacking)
         {
+            Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+
             // Check is within attack range.
-            if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
+            if (hitPlayer != null && hitPlayer.gameObject.CompareTag("Player"))
             {
                 animator.SetBool(Walk,false);
-                isAttacking = true;
-                animator.SetBool(Attack,true);
-                cooldownTimer = 0;
+                if (Random.value > 0.5f)
+                {
+                    isAttacking = true;
+                    animator.SetBool(Attack,true);
+                    cooldownTimer = 0;
+                }
+                else
+                {
+                    isAttacking = true;
+                    animator.SetBool(Shield,true);
+                    cooldownTimer = 0;
+                }
             }
             else if (PlayerInsight())
             {
@@ -83,6 +94,7 @@ public class Skeleton : MonoBehaviour
             {
                 isAttacking = false; // Reset attack state.
                 animator.SetBool(Attack,false);// Reset attack state.
+                animator.SetBool(Shield,false);// Reset attack state.
             }
         }
     }
@@ -101,19 +113,23 @@ public class Skeleton : MonoBehaviour
     // Called when enemy attacks
     private void DamagePlayer()
     {
-        // Check if the player is within attack range.
-        if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
+        // Check if the player is within the circular attack range around the attack point.
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+
+        // If a collider is found and it's the player, apply damage.
+        if (hitPlayer != null && hitPlayer.gameObject.CompareTag("Player"))
         {
-            // Apply damage only if the player is in front of the enemy.
+            // Apply damage only if the player is within the attack range.
             playerController.PlayDamageAnimation(5);
         }
     }
-
-
+    
     
     // USED IN PLAYER_COMBAT
     public void TakeDamage(int damage) 
     {
+        if (animator.GetBool(Shield)) return;
+        
         _currentHealth -= damage;
 
         if(_currentHealth <= 0)
@@ -146,5 +162,17 @@ public class Skeleton : MonoBehaviour
         return false;
     }
     
+    void OnDrawGizmos()
+    {
+        if (attackPoint == null)
+        {
+            return;
+        }
+
+        // Draw a wire sphere to visualize the attack range
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 
 }
+
+

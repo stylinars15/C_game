@@ -110,7 +110,6 @@ public class Goblin : MonoBehaviour
         if(_currentHealth <= 0)
         {
             _currentHealth = 0; // Ensure health doesn't go negative
-            Debug.Log("dead"); 
             animator.SetTrigger(Death);
             DisableGoblin();
             isDead = true;
