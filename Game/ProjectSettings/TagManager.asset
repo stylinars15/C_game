@@ -7,7 +7,6 @@ TagManager:
   - Platform
   - Health_bar
   - Enemy
-  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,30 +16,11 @@ TagManager:
   - UI
   - Goblins
   - Flying_eye
-  - Boss
-  - 
+  - Skeleton
+  - Ground
+  - Slopes
   - Enemy
   - Traps
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

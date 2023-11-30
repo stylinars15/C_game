@@ -4,18 +4,19 @@ using Cinemachine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rb2D;
-    public Transform playerTransform; // Reference to the player's transform
     
-    public CinemachineVirtualCamera stillcam;
-    public CinemachineVirtualCamera followcam;
+    public Transform playerTransform; // Reference to the player's transform
     
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Traps traps;
+    [SerializeField] private float SlopeCheckDistance;
+    [SerializeField] private LayerMask WhatIsGround; 
     
     public LayerMask enemyLayers;
     public Transform defendPoint;
+    
 
     //player movent variables 
     private float _moveSpeed; 
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     
     private float _moveHorizontal; 
     private float _moveVertical; 
+    
     
     //player states
     enum PlayerState
@@ -53,11 +55,15 @@ public class PlayerController : MonoBehaviour
     private static readonly int Death = Animator.StringToHash("Death");
     private static readonly int Defend = Animator.StringToHash("Defend");
 
+   
+
     // Start is called before the first frame update
     void Start()
     {
         // getting our players rigidbody component
         _rb2D = gameObject.GetComponent<Rigidbody2D>();
+        
+        
         // setting up the animator
         _animator = gameObject.GetComponent<Animator>();
         
@@ -86,24 +92,11 @@ public class PlayerController : MonoBehaviour
                 _moveVertical = Input.GetAxisRaw("Vertical");
             }
         }
-        
-        if (transform.position.x < 4.1f)
-        {
-            stillcam.Priority = 10; // Higher priority for the stillcam
-            followcam.Priority = 0; // Lower priority for the followcam
-        }
-        else
-        {
-            stillcam.Priority = 0; // Lower priority for the stillcam
-            followcam.Priority = 10; // Higher priority for the followcam
-        }
-        
-        
-        
-        
     }
-  
-    private void FixedUpdate()
+
+ 
+    
+    private void FixedUpdate() 
     {
         if (_canMove)
         {
