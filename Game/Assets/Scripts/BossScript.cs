@@ -20,7 +20,7 @@ public class Boss : MonoBehaviour
     private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
-    private float movementSpeed = 2.7f; // Speed at which the Goblin moves towards the player.
+    private float movementSpeed = 2.2f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
     private bool isAttacking;
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
