@@ -16,18 +16,13 @@ public class BarHandler : MonoBehaviour
     public Image powerFill;
 
     //Healthbar and Power initialize
-    public int maxHealth = 100;
     public int currentHealth;
-    
-    public int maxPower = 100;
-    public int currentPower;
 
     public void Start()
     {
         //Setting up our health and power
-        SetMaxBars(maxHealth, maxPower);
-
-         
+        SetMaxBars(100, 100);
+        
     }
 
     public void SetMaxBars(int maxHealth, int maxPower)
@@ -73,12 +68,10 @@ public class BarHandler : MonoBehaviour
     
     //Powerbar function test
     
-    void GetPower(int power)
+    public void GetPower(int power)
     {
-        currentPower += power; 
-        //updating our health
-        SetPower(currentPower);
-        
+        //updating our healthbar
+        SetPower(power);
     }
 
 }
