@@ -42,15 +42,11 @@ public class Traps : MonoBehaviour
        CoolDownTimer = AttackCooldown;
     
        healthbar = FindObjectOfType<BarHandler>();
-       
-
-
    }
 
 
    private int FindArrows()
     {
-        
         for (int i = 0; i < arrows.Length; i++)
         {
             if (!arrows[i].activeInHierarchy)
@@ -66,29 +62,29 @@ public class Traps : MonoBehaviour
     private void Update()
     {
         
-
-        if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
+      if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
         {
-            ani.SetBool("Detected", true);
+            ani.SetBool("Detected", true);      // ready to shoot
             
         }
-        else
+        else 
         {
             ani.SetBool("Detected", false);
+            
             CoolDownTimer = AttackCooldown;     // doing this so the trap will attack immediately when it detects the player again
         }
 
-        if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 )
+        if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 ) //detected in zone 2
         {
             CoolDownTimer += Time.deltaTime;
             
             if (CoolDownTimer >= AttackCooldown)
             {
-                ani.SetBool("Shoot", true);
-            }else
-            {
-                ani.SetBool("Shoot", false);
-            }
+                ani.SetBool("Shoot", true);     // arrow starts shooting
+            } 
+        }else 
+        {
+            ani.SetBool("Shoot", false);    // stops shooting
 
         }
     }
