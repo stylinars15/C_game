@@ -117,7 +117,7 @@ public class Skeleton : MonoBehaviour
         Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
 
         // If a collider is found and it's the player, apply damage.
-        if (hitPlayer != null && hitPlayer.gameObject.CompareTag("Player"))
+        if (hitPlayer.gameObject.CompareTag("Player"))
         {
             // Apply damage only if the player is within the attack range.
             playerController.PlayDamageAnimation(5);
@@ -125,41 +125,55 @@ public class Skeleton : MonoBehaviour
     }
     
     
-    // USED IN PLAYER_COMBAT
-    public void TakeDamage(int damage) 
+    // called when player attack
+    public bool TakeDamage(int damage)
     {
-        if (animator.GetBool(Shield)) return;
-        
-        _currentHealth -= damage;
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
 
-        if(_currentHealth <= 0)
+        if (animator.GetBool(Shield) )
         {
-            _currentHealth = 0; // Ensure health doesn't go negative
-            animator.SetTrigger(Death);
-            Disable_Skeleton();
-            isDead = true;
+            if (hitPlayer.gameObject.CompareTag("Player"))
+            {
+                return false;
+            }
         }
-        else
+
+        // The skeleton should take damage if it's not defending or if it's defending but the player is not in front
+        if (!isDefendingAndPlayerInFront)
         {
-            animator.SetTrigger(TakeHit);
+            animator.SetBool(Shield,false);
+            // Reduce health
+            _currentHealth -= damage;
+
+            // Check if health falls below or equals zero
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                animator.SetTrigger(TakeHit);
+            }
+            return true;
         }
+        
     }
+
+
+    private void Die()
+    {
+        _currentHealth = 0; // Ensure health doesn't go negative
+        animator.SetTrigger(Death);
+        Disable_Skeleton();
+        isDead = true;
+    }
+
 
     public void Disable_Skeleton()
     {
         capsuleCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
-    }
-    
-    bool IsAnimationPlaying(Animator animator, string stateName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && 
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-        {
-            return true;
-        }
-        return false;
     }
     
     void OnDrawGizmos()
