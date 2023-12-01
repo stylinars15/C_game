@@ -9,59 +9,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20e14307-d91d-4753-8d61-75850971ec43" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Jump_obj (1).prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Jump_obj (1).prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Skeleton.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Skeleton.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skeleton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Skeleton.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Attack.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Attack.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Attack.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Attack.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Death.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Death.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Death.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Death.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Idle.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Idle.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Idle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Idle.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Shield.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Shield.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Shield.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Shield.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Skeleton.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Skeleton.controller.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Take Hit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Take Hit.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Takehit.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Takehit.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Walk.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Walk.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Walk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Skeleton/Walk.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Flying eye/Death.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Flying eye/Death.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Flying eye/Flying_eye.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Flying eye/Flying_eye.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Jump_obj.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Background/Jump_obj.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Jump_obj.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Background/Jump_obj.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab_Enemy/Flying_Eye.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Flying_Eye.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab_Enemy/Goblin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab_Enemy/Goblin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BarHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BarHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FlyingEye.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FlyingEye.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Goblin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Goblin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player_Combat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player_Combat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player_Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player_Controller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-    </list>
+    <list default="true" id="20e14307-d91d-4753-8d61-75850971ec43" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +34,7 @@
     "WebServerToolWindowFactoryState": "false",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "Merging Nipun__before",
+    "git-widget-placeholder": "Nipun__before",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,7 +52,7 @@
       <updated>1700931691759</updated>
       <workItem from="1700931695827" duration="177000" />
       <workItem from="1700931881355" duration="368000" />
-      <workItem from="1701439723280" duration="222000" />
+      <workItem from="1701439723280" duration="293000" />
     </task>
     <servers />
   </component>
