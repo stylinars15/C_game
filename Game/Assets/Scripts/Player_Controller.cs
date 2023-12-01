@@ -7,20 +7,14 @@ public class PlayerController : MonoBehaviour
     
     public Transform playerTransform; // Reference to the player's transform
     
-    public CinemachineVirtualCamera stillcam;
-    public CinemachineVirtualCamera followcam;
-    
     [SerializeField] private BarHandler barHandler;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Traps traps;
-    [SerializeField] private float SlopeCheckDistance;
-    [SerializeField] private LayerMask WhatIsGround; 
-    
+
     public LayerMask enemyLayers;
     public Transform defendPoint;
     
-
     //player movent variables 
     private float _moveSpeed; 
     private float _jumpForce;
@@ -71,7 +65,7 @@ public class PlayerController : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
         
         _moveSpeed = 1f; 
-        _jumpForce = 25f; 
+        _jumpForce = 25; 
         _jumpState = false;
         
     }
@@ -95,22 +89,6 @@ public class PlayerController : MonoBehaviour
                 _moveVertical = Input.GetAxisRaw("Vertical");
             }
         }
-        
-        if (transform.position.x < 4.1f)
-        {
-            stillcam.Priority = 10; // Higher priority for the stillcam
-            followcam.Priority = 0; // Lower priority for the followcam
-        }
-        else
-        {
-            stillcam.Priority = 0; // Lower priority for the stillcam
-            followcam.Priority = 10; // Higher priority for the followcam
-        }
-        
-        
-        
-        
-        
     }
 
  
@@ -202,7 +180,6 @@ public class PlayerController : MonoBehaviour
             }
            
         }
-        
         
     }
 
@@ -313,7 +290,8 @@ public class PlayerController : MonoBehaviour
                 // Check if the collider has a Goblin component
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
-                if (enemy != null || enemy1 != null)
+                Skeleton enemy2 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy != null || enemy1 != null || enemy2 != null)
                 {
                     return true;
                 }

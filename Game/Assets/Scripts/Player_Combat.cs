@@ -2,22 +2,19 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-
     // Reference to the animator for player animations
     public Animator animator;
 
     // Reference to the transform that represents the attack point
     public Transform attackPoint;
-
     public Transform attackPoint1;
+    public BarHandler barHandler;
 
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
     
-
-
     private float range;
-    private float _attackRate = 2f; // Attacks per sec
+    private float _attackRate = 1.8f; // Attacks per sec
     private int _specialAttackCounter; // Define a counter variable at the class level
     private int _resolveBuildUp; // For powerup
     float _nextAttack;
@@ -37,11 +34,11 @@ public class PlayerCombat : MonoBehaviour
         // check if attack is alowed after past time
         if (Input.GetKeyDown(KeyCode.S))
         {
-            //if bar full
-
+            if (_resolveBuildUp < 100) return;
             animator.SetTrigger(Attack2);
             //reset bar to 0
             _resolveBuildUp = 0;
+            barHandler.GetPower(_resolveBuildUp);
         }
         else if (Time.time >= _nextAttack && !isMoving)
         {
@@ -60,7 +57,6 @@ public class PlayerCombat : MonoBehaviour
     
     void Attack()
     {
-        // Rest of the function remains the same
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, 1f, enemyLayers);
 
         foreach (Collider2D enemyCollider in hitEnemies)
@@ -72,15 +68,28 @@ public class PlayerCombat : MonoBehaviour
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 if (enemy != null)
                 {
-                    _resolveBuildUp++;
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
                     enemy.TakeDamage(20);
                 }
 
                 FlyingEye enemy2 = enemyCollider.GetComponent<FlyingEye>();
                 if (enemy2 != null)
                 {
-                    _resolveBuildUp++;
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
                     enemy2.TakeDamage(20);
+                }
+                
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    barHandler.GetPower(_resolveBuildUp);
+                    // check if skeleton is shielding
+                    if (enemy3.TakeDamage(20))
+                    {
+                        _resolveBuildUp+=10;
+                    }
                 }
             }
         }
@@ -127,21 +136,14 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy2.TakeDamage(20);
                 }
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
+                    enemy3.TakeDamage(20);
+                }
             }
         }
     }
-
 }
-
-/*
-    void OnDrawGizmos()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-
-        // Draw a wire sphere to visualize the attack range
-        Gizmos.DrawWireSphere(attackPoint1.position, testRange);
-    }
-    */

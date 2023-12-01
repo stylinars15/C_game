@@ -19,13 +19,12 @@ public class FlyingEye : MonoBehaviour
     public bool isDead { get; private set; }
     private float movementSpeed = 2.0f; 
     private Transform playerTransform;
-    private bool isAttacking = false;
+    private bool isAttacking;
     
     //animations
     private static readonly int TakeHit = Animator.StringToHash("Take_hit");
     private static readonly int Death = Animator.StringToHash("Death");
     private static readonly int Attack = Animator.StringToHash("Attack");
-    private static readonly int Flying = Animator.StringToHash("Flying");
 
     void Start()
     { 
@@ -46,8 +45,6 @@ public class FlyingEye : MonoBehaviour
             // Check is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
-                // Start attacking when in range.
-                animator.SetTrigger(Flying);
                 isAttacking = true;
                 animator.SetTrigger(Attack);
                 cooldownTimer = 0;
