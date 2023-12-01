@@ -34,6 +34,8 @@ public class Skeleton : MonoBehaviour
     void Start()
     { 
         _currentHealth = _maxHealth;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
     
     private void Update()
@@ -61,30 +63,21 @@ public class Skeleton : MonoBehaviour
             }
             else if (PlayerInsight())
             {
-                // Check if the player is above the enemy by a certain threshold.
-                if (playerTransform.position.y > (transform.position.y+3.2))
+                animator.SetBool(Walk, true);
+                float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+                Vector3 localScale = transform.localScale;
+    
+                // Flip the sprite if the direction is different.
+                if ((direction > 0 && localScale.x < 0) || (direction < 0 && localScale.x > 0))
                 {
-                    animator.SetBool(Walk, false);
+                    localScale.x *= -1;
+                    transform.localScale = localScale;
                 }
-                else
-                {
-                    animator.SetBool(Walk, true);
-                    float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
-                    Vector3 localScale = transform.localScale;
-        
-                    // Flip the sprite if the direction is different.
-                    if ((direction > 0 && localScale.x < 0) || (direction < 0 && localScale.x > 0))
-                    {
-                        localScale.x *= -1;
-                        transform.localScale = localScale;
-                    }
 
-                    // If the player is in sight and not above, move towards the player.
-                    Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
-                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
-                }
+                // If the player is in sight and not above, move towards the player.
+                Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
             }
-
         }
         else 
         {
@@ -94,7 +87,7 @@ public class Skeleton : MonoBehaviour
             {
                 isAttacking = false; // Reset attack state.
                 animator.SetBool(Attack,false);// Reset attack state.
-                animator.SetBool(Shield,false);// Reset attack state.
+                animator.SetBool(Shield,false);// 
             }
         }
     }
@@ -125,41 +118,63 @@ public class Skeleton : MonoBehaviour
     }
     
     
-    // USED IN PLAYER_COMBAT
-    public void TakeDamage(int damage) 
+    // called when player attack
+    public bool TakeDamage(int damage)
     {
-        if (animator.GetBool(Shield)) return;
-        
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerLayer);
+
+        if (animator.GetBool(Shield))
+        {
+            if (hitPlayer != null && hitPlayer.gameObject.CompareTag("Player"))
+            {
+                return false;
+            }
+            // Reduce health
+            animator.SetBool(Shield,false);
+            _currentHealth -= damage;
+            
+            // Check if health falls below or equals zero
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                animator.SetTrigger(TakeHit);
+            }
+            return true;
+        }
+        // Reduce health
+         animator.SetBool(Shield,false);
         _currentHealth -= damage;
 
-        if(_currentHealth <= 0)
+        // Check if health falls below or equals zero
+        if (_currentHealth <= 0)
         {
-            _currentHealth = 0; // Ensure health doesn't go negative
-            animator.SetTrigger(Death);
-            Disable_Skeleton();
-            isDead = true;
+            Die();
         }
         else
         {
             animator.SetTrigger(TakeHit);
         }
+        return true;
     }
+
+
+    private void Die()
+    {
+        _currentHealth = 0; // Ensure health doesn't go negative
+        animator.SetTrigger(Death);
+        Disable_Skeleton();
+        isDead = true;
+    }
+
 
     public void Disable_Skeleton()
     {
         capsuleCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
-    }
-    
-    bool IsAnimationPlaying(Animator animator, string stateName)
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName) && 
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-        {
-            return true;
-        }
-        return false;
     }
     
     void OnDrawGizmos()

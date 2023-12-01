@@ -11,13 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Traps traps;
-    [SerializeField] private float SlopeCheckDistance;
-    [SerializeField] private LayerMask WhatIsGround; 
-    
+
     public LayerMask enemyLayers;
     public Transform defendPoint;
     
-
     //player movent variables 
     private float _moveSpeed; 
     private float _jumpForce;
@@ -293,7 +290,8 @@ public class PlayerController : MonoBehaviour
                 // Check if the collider has a Goblin component
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
-                if (enemy != null || enemy1 != null)
+                Skeleton enemy2 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy != null || enemy1 != null || enemy2 != null)
                 {
                     return true;
                 }

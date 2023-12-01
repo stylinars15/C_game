@@ -13,7 +13,6 @@ public class PlayerCombat : MonoBehaviour
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
     
-
     private float range;
     private float _attackRate = 1.8f; // Attacks per sec
     private int _specialAttackCounter; // Define a counter variable at the class level
@@ -81,6 +80,17 @@ public class PlayerCombat : MonoBehaviour
                     barHandler.GetPower(_resolveBuildUp);
                     enemy2.TakeDamage(20);
                 }
+                
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    barHandler.GetPower(_resolveBuildUp);
+                    // check if skeleton is shielding
+                    if (enemy3.TakeDamage(20))
+                    {
+                        _resolveBuildUp+=10;
+                    }
+                }
             }
         }
     }
@@ -126,21 +136,14 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy2.TakeDamage(20);
                 }
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
+                    enemy3.TakeDamage(20);
+                }
             }
         }
     }
-
 }
-
-/*
-    void OnDrawGizmos()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-
-        // Draw a wire sphere to visualize the attack range
-        Gizmos.DrawWireSphere(attackPoint1.position, testRange);
-    }
-    */
