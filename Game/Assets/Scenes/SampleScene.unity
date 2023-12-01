@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.501412, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5008106, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1593,10 +1593,6 @@ MonoBehaviour:
   enemySpawner: {fileID: 1686906025}
   gameManager: {fileID: 1677180745}
   traps: {fileID: 1836340890}
-  SlopeCheckDistance: 0
-  WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
   enemyLayers:
     serializedVersion: 2
     m_Bits: 192
@@ -2275,7 +2271,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.501412, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5008106, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4234,7 +4230,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationDelay: 0
   activeTime: 0
+  anim: {fileID: 1535471976}
   box: {fileID: 1535471978}
+  playerController: {fileID: 424158066}
 --- !u!1 &1601447500
 GameObject:
   m_ObjectHideFlags: 0
@@ -4615,6 +4613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dbc963de29541d29e88642b28da3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 0}
 --- !u!4 &1677180747
 Transform:
   m_ObjectHideFlags: 0
@@ -4666,7 +4665,7 @@ MonoBehaviour:
   playerController: {fileID: 424158066}
   prefabGoblin: {fileID: 1224598187372397153, guid: 84bc46de51c6e48f7b6307b408d554cd, type: 3}
   prefabEye: {fileID: 5848367351513464248, guid: 326ffacce342946989c729fdd00fa6a1, type: 3}
-  yCoord: -1.7
+  prefabSkeleton: {fileID: 0}
   _spawnInterval: 22.75
 --- !u!4 &1686906026
 Transform:

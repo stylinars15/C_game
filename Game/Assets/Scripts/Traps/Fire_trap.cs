@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,51 +9,76 @@ public class Fire_trap : MonoBehaviour
     [SerializeField] private float activationDelay; 
     [SerializeField] private float activeTime;
 
-    private Animator anim;
-    private SpriteRenderer spriteRend;
+    public Animator anim;
 
     public Collider2D box; 
    
     private bool triggered;
     private bool active;
+    
 
-    public float Cooldowntimer; 
-    public float Hit_Cooldowntimer; 
+    private bool PlayerHit;
+    
+    public PlayerController playerController; 
 
-    private void Awake()
-    {
-        anim = GetComponent<Animator>();
-        spriteRend = GetComponent<SpriteRenderer>();
-    }
+    
+    private float cooldownTimer = 0f;
+    private float activeTimer = 0f;
+    private float cooldownDuration = 4f; // 4 seconds cooldown
+    private float activeDuration = 1f; // 1 second active
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("Player entered the box");
-            triggered = true;
-            // Additional logic for when the player enters the box
-        }
+            PlayerHit = true; 
+        }    
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            print("Player is still in the box");
-            if (active) 
-            {
-                // Logic while the player remains in the box, e.g., apply damage over time
-                collision.GetComponent<PlayerController>().PlayDamageAnimation(10);
-            }
+            PlayerHit = true; 
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerHit = false;
         }
     }
 
     
-
-    // Rest of your update logic
     private void Update()
     {
-        
+        // Cooldown phase
+        if (!anim.GetBool("Fire"))
+        {
+            cooldownTimer += Time.deltaTime;
+            if (cooldownTimer >= cooldownDuration)
+            {
+                anim.SetBool("Fire", true); // Activate the trap
+                cooldownTimer = 0; // Reset the cooldown timer
+            }
+        }
+        // Active phase
+        else
+        {
+            activeTimer += Time.deltaTime;
+            print("activeTimer:" + activeTimer + "," + "activeDuration:" + activeDuration);
+            if (activeTimer >= activeDuration)
+            {
+                anim.SetBool("Fire", false); // Deactivate the trap
+                activeTimer = 0; // Reset the active timer
+                if (PlayerHit) print("Take damage");
+                if(PlayerHit) playerController.PlayDamageAnimation(10);
+
+            }
+        }
+
+   
     }
 }

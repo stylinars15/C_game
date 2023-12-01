@@ -65,28 +65,23 @@ public class Traps : MonoBehaviour
       if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
         {
             ani.SetBool("Detected", true);      // ready to shoot
-            
         }
         else 
         {
             ani.SetBool("Detected", false);
-            
             CoolDownTimer = AttackCooldown;     // doing this so the trap will attack immediately when it detects the player again
         }
 
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 ) //detected in zone 2
         {
             CoolDownTimer += Time.deltaTime;
-            
-            if (CoolDownTimer >= AttackCooldown)
-            {
+            if (CoolDownTimer >= AttackCooldown) 
                 ani.SetBool("Shoot", true);     // arrow starts shooting
-            } 
-        }else 
-        {
+        }
+        else 
             ani.SetBool("Shoot", false);    // stops shooting
 
-        }
+        
     }
     
     public void Disable_Traps()
