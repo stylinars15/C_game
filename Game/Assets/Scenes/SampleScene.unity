@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5008106, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5029907, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1330,7 +1330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4760337598757930459, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: AttackCooldown
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4765379980972927652, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_SortingLayer
@@ -2271,7 +2271,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5008106, y: 1.1880256, z: -10}
+  m_LocalPosition: {x: -3.5029907, y: 1.1880256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4213,8 +4213,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000023841858, y: 0.0022667646}
-  m_Size: {x: 0.12958913, y: 0.30826494}
+  m_Offset: {x: -0.0029830933, y: 0.0022667646}
+  m_Size: {x: 0.21908283, y: 0.30826494}
   m_Direction: 0
 --- !u!114 &1535471979
 MonoBehaviour:
@@ -4228,8 +4228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc30300ab131b46ff8d822c05992691f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationDelay: 0
-  activeTime: 0
   anim: {fileID: 1535471976}
   box: {fileID: 1535471978}
   playerController: {fileID: 424158066}

@@ -19,7 +19,6 @@ public class Traps : MonoBehaviour
    
    public void ShootArrow()
    {
-        CoolDownTimer = 0; 
         int arrowIndex = FindArrows();
         if (arrowIndex >= 0 && arrowIndex < arrows.Length)
         {
@@ -34,8 +33,9 @@ public class Traps : MonoBehaviour
                 }
             }
         }
+        
     }
-
+   
    private void Start()
    {
        //We are setting cool down timer to attack cooldown, so that when enemy is detected the trap is shooting immediately
@@ -75,8 +75,14 @@ public class Traps : MonoBehaviour
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0 ) //detected in zone 2
         {
             CoolDownTimer += Time.deltaTime;
-            if (CoolDownTimer >= AttackCooldown) 
-                ani.SetBool("Shoot", true);     // arrow starts shooting
+            if (CoolDownTimer >= AttackCooldown)
+            {
+                print("start");
+                ani.SetBool("Shoot", true); // arrow starts shooting
+                print("over");
+                CoolDownTimer = 0;
+            }
+
         }
         else 
             ani.SetBool("Shoot", false);    // stops shooting

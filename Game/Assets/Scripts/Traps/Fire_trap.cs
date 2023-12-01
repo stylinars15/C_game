@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Fire_trap : MonoBehaviour
 {
-    [Header("Firetrap Timers")]
-    [SerializeField] private float activationDelay; 
-    [SerializeField] private float activeTime;
+
+
 
     public Animator anim;
 
@@ -24,8 +23,9 @@ public class Fire_trap : MonoBehaviour
     
     private float cooldownTimer = 0f;
     private float activeTimer = 0f;
-    private float cooldownDuration = 4f; // 4 seconds cooldown
+    private float cooldownDuration = 2f; // 4 seconds cooldown
     private float activeDuration = 1f; // 1 second active
+    private bool damagetaken = false;
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -50,6 +50,15 @@ public class Fire_trap : MonoBehaviour
             PlayerHit = false;
         }
     }
+    
+    public void CheckForPlayerDamage()
+    {
+        if (PlayerHit && !damagetaken)
+        {
+            playerController.PlayDamageAnimation(10); // Apply damage
+            damagetaken = true; 
+        }
+    }
 
     
     private void Update()
@@ -68,15 +77,14 @@ public class Fire_trap : MonoBehaviour
         else
         {
             activeTimer += Time.deltaTime;
-            print("activeTimer:" + activeTimer + "," + "activeDuration:" + activeDuration);
             if (activeTimer >= activeDuration)
             {
                 anim.SetBool("Fire", false); // Deactivate the trap
                 activeTimer = 0; // Reset the active timer
-                if (PlayerHit) print("Take damage");
-                if(PlayerHit) playerController.PlayDamageAnimation(10);
-
+                damagetaken = false;
             }
+            
+            
         }
 
    
