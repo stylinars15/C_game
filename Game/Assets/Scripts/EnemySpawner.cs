@@ -7,8 +7,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject prefabGoblin;
     [SerializeField] private GameObject prefabEye;
-
-    public float yCoord; // to test placement 
+    [SerializeField] private GameObject prefabSkeleton;
+    
     public float _spawnInterval; // Time interval between enemy spawns.
     private float _nextSpawnTime;
     private GameObject _spawnedEnemy;
@@ -35,26 +35,14 @@ public class EnemySpawner : MonoBehaviour
         float randomSide;
         Vector3 spawnPosition;
         Vector3 playerPosition = playerController.playerTransform.position;
-        int randomSpawnTicket = Random.Range(0, 2); // Generates a random number between depending on how many cases
+        int randomSpawnTicket = Random.Range(0, 3); // Generates a random number between depending on how many cases
 
         switch (randomSpawnTicket)
         {
             case 0:
                 // Spawn Goblin
-                // Calculate the new X spawn position within the desired range
-                
-                randomSide = Random.Range(-1f, 1f);
-
-                if (randomSide < 0)
-                {
-                    // If randomSide is negative, spawn on the left side in the range -12 to -10
-                    randomXSpawn = playerPosition.x + Random.Range(-12f, -10f);
-                }
-                else
-                {
-                    // If randomSide is non-negative, spawn on the right side in the range 10 to 12
-                    randomXSpawn = playerPosition.x + Random.Range(10f, 12f);
-                }
+                // in the range 10 to 12
+                randomXSpawn = playerPosition.x + Random.Range(10f, 12f);
 
                 // Create a spawn position with the calculated X and fixed Y position
                 spawnPosition = new Vector3(randomXSpawn, -1.78f, 0f);
@@ -66,25 +54,25 @@ public class EnemySpawner : MonoBehaviour
                 // Spawn Flying_eye
                 // Calculate the new X spawn position within the desired range
                 randomSide = Random.Range(-1f, 1f);
-
-                if (randomSide < 0)
-                {
-                    // If randomSide is negative, spawn on the left side in the range -12 to -10
-                    randomXSpawn = playerPosition.x + Random.Range(-12f, -10f);
-                }
-                else
-                {
-                    // If randomSide is non-negative, spawn on the right side in the range 10 to 12
-                    randomXSpawn = playerPosition.x + Random.Range(10f, 12f);
-                }
+                // in the range 10 to 12
+                randomXSpawn = playerPosition.x + Random.Range(10f, 12f);
 
                 // Create a spawn position with the calculated X and fixed Y position
                 spawnPosition = new Vector3(randomXSpawn, -1.7f, 0f);
                 // Instantiate the enemy prefab at the calculated spawn position
                 _spawnedEnemy = Instantiate(prefabEye, spawnPosition, Quaternion.identity);
                 break;
+            case 2:
+                // Spawn Skeleton
+                // in the range 10 to 12
+                randomXSpawn = playerPosition.x + Random.Range(10f, 12f);
+
+                // Create a spawn position with the calculated X and fixed Y position
+                spawnPosition = new Vector3(randomXSpawn, -1.93f, 0f);
+                // Instantiate the enemy prefab at the calculated spawn position
+                _spawnedEnemy = Instantiate(prefabSkeleton, spawnPosition, Quaternion.identity);
+                break;
         }
-        
         // Add the spawned enemy to the list
         _spawnedEnemies.Add(_spawnedEnemy);
     }
@@ -118,7 +106,6 @@ public class EnemySpawner : MonoBehaviour
                 if (enemy.GetComponent<Goblin>() is Goblin goblinScript)
                 {
                     goblinScript.enabled = false;
-                    Debug.Log("Disabled Goblin script on enemy: " + enemy.name);
                 }
                 // Check if the enemy is a FlyingEye
                 else if (enemy.GetComponent<FlyingEye>() is FlyingEye eyeScript)
@@ -129,7 +116,6 @@ public class EnemySpawner : MonoBehaviour
                         capsuleCollider.enabled = false;
                     }
                     eyeScript.enabled = false;
-                    Debug.Log("Disabled FlyingEye script on enemy: " + enemy.name);
                 }
             }
         }

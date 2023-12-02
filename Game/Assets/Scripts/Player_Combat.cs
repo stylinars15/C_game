@@ -13,11 +13,10 @@ public class PlayerCombat : MonoBehaviour
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
     
-
     private float range;
     private float _attackRate = 1.8f; // Attacks per sec
     private int _specialAttackCounter; // Define a counter variable at the class level
-    private int _resolveBuildUp; // For powerup
+    public int _resolveBuildUp; // For powerup
     float _nextAttack;
     private Rigidbody2D _rb2D;
     private static readonly int Attack1 = Animator.StringToHash("Attack");
@@ -33,7 +32,7 @@ public class PlayerCombat : MonoBehaviour
         bool isMoving = _rb2D.velocity.magnitude > 0.1f;
 
         // check if attack is alowed after past time
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && _resolveBuildUp >= 100)
         {
             if (_resolveBuildUp < 100) return;
             animator.SetTrigger(Attack2);
@@ -81,6 +80,17 @@ public class PlayerCombat : MonoBehaviour
                     barHandler.GetPower(_resolveBuildUp);
                     enemy2.TakeDamage(20);
                 }
+                
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    barHandler.GetPower(_resolveBuildUp);
+                    // check if skeleton is shielding
+                    if (enemy3.TakeDamage(20))
+                    {
+                        _resolveBuildUp+=10;
+                    }
+                }
             }
         }
     }
@@ -105,8 +115,7 @@ public class PlayerCombat : MonoBehaviour
             _specialAttackCounter = 0;
             range = 1.5f;
         }
-
-        // Rest of your code
+        
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint1.position, range, enemyLayers);
 
         foreach (Collider2D enemyCollider in hitEnemies)
@@ -126,21 +135,14 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy2.TakeDamage(20);
                 }
+                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy3 != null)
+                {
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
+                    enemy3.TakeDamage(20);
+                }
             }
         }
     }
-
 }
-
-/*
-    void OnDrawGizmos()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-
-        // Draw a wire sphere to visualize the attack range
-        Gizmos.DrawWireSphere(attackPoint1.position, testRange);
-    }
-    */
