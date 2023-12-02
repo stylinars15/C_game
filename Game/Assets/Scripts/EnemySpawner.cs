@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public float _spawnInterval; // Time interval between enemy spawns.
     private float _nextSpawnTime;
     private GameObject _spawnedEnemy;
-    private readonly int maxActiveEnemies = 3; // Set the maximum number of active enemies
+    private readonly int maxActiveEnemies = 2; // Set the maximum number of active enemies
     
     // List to keep track of spawned enemies
     private List<GameObject> _spawnedEnemies = new List<GameObject>();
