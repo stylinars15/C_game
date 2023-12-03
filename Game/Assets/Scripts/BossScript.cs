@@ -101,7 +101,6 @@ public class Boss : MonoBehaviour
         // check if player is within attackrange
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
-            print("Hello");
             playerController.PlayDamageAnimation(20);
         }
     }
@@ -134,11 +133,8 @@ public class Boss : MonoBehaviour
             playerController.PlayDamageAnimation(20);
         }
     }
-
     
-    
-
-    public void DisableGoblin()
+    public void DisableBoss()
     {
         polygonCollider.enabled = false;
         boxCollider.enabled = false;

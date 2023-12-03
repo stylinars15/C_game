@@ -72,27 +72,30 @@ public class PlayerCombat : MonoBehaviour
                     barHandler.GetPower(_resolveBuildUp);
                     enemy.TakeDamage(20);
                 }
-
-                FlyingEye enemy2 = enemyCollider.GetComponent<FlyingEye>();
-                if (enemy2 != null)
+                FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
+                if (enemy1 != null)
                 {
                     _resolveBuildUp+=10;
                     barHandler.GetPower(_resolveBuildUp);
-                    enemy2.TakeDamage(20);
+                    enemy1.TakeDamage(20);
                 }
-                /*
-                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
-                if (enemy3 != null)
+                Skeleton enemy2 = enemyCollider.GetComponent<Skeleton>();
+                if (enemy2 != null)
                 {
                     barHandler.GetPower(_resolveBuildUp);
                     // check if skeleton is shielding
-                    if (enemy3.TakeDamage(20))
+                    if (enemy2.TakeDamage(20))
                     {
                         _resolveBuildUp+=10;
                     }
                 }
-                */
-
+                Boss enemy3 = enemyCollider.GetComponent<Boss>();
+                if (enemy3 != null)
+                {
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
+                    enemy3.TakeDamage(10);
+                }
             }
         }
     }
@@ -131,21 +134,25 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy.TakeDamage(20);
                 }
-
-                FlyingEye enemy2 = enemyCollider.GetComponent<FlyingEye>();
+                FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
+                if (enemy1 != null)
+                {
+                    enemy1.TakeDamage(20);
+                }
+                Skeleton enemy2 = enemyCollider.GetComponent<Skeleton>();
                 if (enemy2 != null)
                 {
+                    _resolveBuildUp+=10;
+                    barHandler.GetPower(_resolveBuildUp);
                     enemy2.TakeDamage(20);
                 }
-                /*
-                Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
+                Boss enemy3 = enemyCollider.GetComponent<Boss>();
                 if (enemy3 != null)
                 {
                     _resolveBuildUp+=10;
                     barHandler.GetPower(_resolveBuildUp);
-                    enemy3.TakeDamage(20);
+                    enemy3.TakeDamage(10);
                 }
-                */
             }
         }
     }

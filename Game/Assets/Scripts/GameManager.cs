@@ -11,7 +11,14 @@ public class GameManager : MonoBehaviour
     
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        }
     }
     
     public void ReplayButton()
