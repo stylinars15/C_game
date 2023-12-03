@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public EnemySpawner enemySpawner;
+    public Controls Controls;
     [SerializeField] private BoxCollider2D boxCollider;
     private Audio audioManager; // Reference to the Audio script
-
     
     void Start()
     {
@@ -27,10 +28,8 @@ public class GameManager : MonoBehaviour
     
     public void MainMenuButton()
     {
-        print("hello");
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            print("hell22222o");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
@@ -47,10 +46,15 @@ public class GameManager : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && enemySpawner.CountActiveEnemies() == 0)
         {
             audioManager.ChangeMusic();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            print("else");
+            Controls.active_deactivate();
         }
     }
 

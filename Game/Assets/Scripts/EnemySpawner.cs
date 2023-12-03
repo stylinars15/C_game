@@ -133,7 +133,7 @@ public class EnemySpawner : MonoBehaviour
         enabled = false;
     }
     
-    private int CountActiveEnemies()
+    public int CountActiveEnemies()
     {
         int activeEnemies = 0;
         foreach (var enemy in _spawnedEnemies)

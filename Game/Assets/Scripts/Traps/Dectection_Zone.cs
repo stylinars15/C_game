@@ -15,6 +15,7 @@ public class Dectection_Zone : MonoBehaviour
     {
         if (collider.gameObject.tag == tagtarget)
         {
+            gameObject.SetActive(true);
             detectedObjs.Add(collider);
         }
     }

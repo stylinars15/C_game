@@ -40,6 +40,7 @@ public class Shock_trap : MonoBehaviour
     {
         if (PlayerHit && (CurrentTime >=  HitDuration))
         {
+            print("done");
             CurrentTime = 0;
             playerController._moveSpeed = 0.5f; // slow player down 
             playerController._jumpForce = 15;     
@@ -50,6 +51,8 @@ public class Shock_trap : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("detectedObjs Count: " + detectionzone_2.detectedObjs.Count);
+
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0)
         {
             if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
@@ -95,12 +98,14 @@ public class Shock_trap : MonoBehaviour
             }
 
         }
-        else
-        {
-            anim.SetBool("Shock", false); // Deactivate the trap
-            playerController._moveSpeed = 1f; //reset speed for the player 
-            playerController._jumpForce = 25;
-        }
+
+        // if (detectionzone_2.detectedObjs.Count == 0)
+        // {
+        //     anim.SetBool("Shock", false); // Deactivate the trap
+        //     playerController._moveSpeed = 1f; //reset speed for the player 
+        //     playerController._jumpForce = 25;  
+        // }
+        
 
 
     }

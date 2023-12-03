@@ -11,8 +11,12 @@ public class Controls : MonoBehaviour
     public Transform attack;
     public Transform s_attack;
     public Transform wait_attack;
+    public Transform GoBack;
+    
     public PlayerCombat playerCombat;
     public PlayerController playerController;
+
+    private float timer; 
     
     private enum State
     {
@@ -34,6 +38,7 @@ public class Controls : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         if (!playerController._canMove)
         {
             move.gameObject.SetActive(false);
@@ -97,6 +102,13 @@ public class Controls : MonoBehaviour
                 this.enabled = false; // Disables this script
                 break;
         }
+
+        
+        if (timer >= 4f)
+        {
+            timer = 0; 
+            GoBack.gameObject.SetActive(false);
+        }
     }
 
     private void Deactivate()
@@ -106,5 +118,16 @@ public class Controls : MonoBehaviour
         s_attack.gameObject.SetActive(false);
         attack.gameObject.SetActive(false);
         wait_attack.gameObject.SetActive(false);
+        GoBack.gameObject.SetActive(false);
+    }
+    
+    public void active_deactivate()
+    {
+        print("active_deactivate");
+        GoBack.gameObject.SetActive(true);
+        if (timer > 5f)
+        {
+            timer += Time.deltaTime; 
+        }
     }
 }
