@@ -3597,7 +3597,7 @@ MonoBehaviour:
   boss: {fileID: 87729847}
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 8640
   defendPoint: {fileID: 1077538674}
   _moveSpeed: 0
   _jumpForce: 0
