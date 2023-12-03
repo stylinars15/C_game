@@ -5,8 +5,8 @@ using UnityEngine;
 public class Audio : MonoBehaviour
 {
     public static Audio instance;
-
     public AudioSource audioSource;
+    public AudioSource audioSource2;
 
     void Awake()
     {
@@ -24,10 +24,15 @@ public class Audio : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(AudioClip clip)
+    public void ChangeMusic()
     {
-        audioSource.clip = clip;
-        audioSource.loop = true; // Set the loop property to true
-        audioSource.Play();
+        audioSource.Stop(); // Stop the first audio source
+        audioSource2.Play(); // Start playing the second audio source
+    }
+    
+    public void ChangeMusic2()
+    {
+        audioSource.Play(); // Stop the first audio source
+        audioSource2.Stop(); // Start playing the second audio source
     }
 }

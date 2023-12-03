@@ -288,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 35034971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5023215, y: 1.1880249, z: -10}
+  m_LocalPosition: {x: -3.2732508, y: 1.1880249, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1771,10 +1771,14 @@ MonoBehaviour:
   enemySpawner: {fileID: 1686906025}
   gameManager: {fileID: 1677180745}
   traps: {fileID: 1836340890}
+  boss: {fileID: 0}
+  sceneMusic: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 448
   defendPoint: {fileID: 966357175}
+  _moveSpeed: 0
+  _jumpForce: 0
   _canMove: 1
 --- !u!95 &424158068
 Animator:
@@ -2511,7 +2515,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5023215, y: 1.1880249, z: -10}
+  m_LocalPosition: {x: -3.2732508, y: 1.1880249, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3225,7 +3229,7 @@ Transform:
   m_GameObject: {fileID: 825130455}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0533, y: 1.6, z: 0}
+  m_LocalPosition: {x: -0.3, y: 1.6, z: 0}
   m_LocalScale: {x: 0.00011479874, y: 0.075773045, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
