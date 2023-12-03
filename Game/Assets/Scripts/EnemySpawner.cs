@@ -103,12 +103,12 @@ public class EnemySpawner : MonoBehaviour
                     boxCollider.enabled = false;
                 }
                 
-                if (enemy.GetComponent<Goblin>() is Goblin goblinScript)
+                if (enemy.GetComponent<Goblin>() is { } goblinScript)
                 {
                     goblinScript.enabled = false;
                 }
                 // Check if the enemy is a FlyingEye
-                else if (enemy.GetComponent<FlyingEye>() is FlyingEye eyeScript)
+                else if (enemy.GetComponent<FlyingEye>() is { } eyeScript)
                 {
                     CapsuleCollider2D capsuleCollider = enemy.GetComponent<CapsuleCollider2D>();
                     if (capsuleCollider != null)
@@ -116,6 +116,15 @@ public class EnemySpawner : MonoBehaviour
                         capsuleCollider.enabled = false;
                     }
                     eyeScript.enabled = false;
+                }
+                else if (enemy.GetComponent<Skeleton>() is { } skeletonScript)
+                {
+                    CapsuleCollider2D capsuleCollider = enemy.GetComponent<CapsuleCollider2D>();
+                    if (capsuleCollider != null)
+                    {
+                        capsuleCollider.enabled = false;
+                    }
+                    skeletonScript.enabled = false;
                 }
             }
         }
@@ -139,11 +148,14 @@ public class EnemySpawner : MonoBehaviour
                 {
                     activeEnemies++;
                 }
+                else if (enemy.TryGetComponent<Skeleton>(out Skeleton skeleton) && !skeleton.isDead)
+                {
+                    activeEnemies++;
+                }
             }
         }
         return activeEnemies;
     }
-
 
 }
 
