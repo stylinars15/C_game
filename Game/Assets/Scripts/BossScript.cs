@@ -9,7 +9,7 @@ public class Boss : MonoBehaviour
     // Reference to the animator for player animations
     public Animator animator;
     private int maxHealth = 300;
-    int _currentHealth;
+    public int _currentHealth;
 
     private float attackCooldown = 1.7f;
     private float attackRange = 2.2f;
@@ -107,7 +107,7 @@ public class Boss : MonoBehaviour
     
     
     // USED IN PLAYER_COMBAT
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage, bool attack) 
     {
         _currentHealth -= damage;
         animator.SetBool(IsMoving,false);
@@ -121,7 +121,10 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger(TakeHit);
+            if (attack == true)
+            {
+                animator.SetTrigger(TakeHit); 
+            }
         }
     }
     

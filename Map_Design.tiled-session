@@ -3,15 +3,15 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Game/Assets/Sand_level/Rules/Automapping_Rules.tmx",
+    "activeFile": "Game/Assets/Sand_level/Map.tmx",
     "automapping.whileDrawing": true,
     "expandedProjectPaths": [
-        "Game/Assets",
+        "Game/Assets/TextMesh Pro",
         "Game",
         ".",
-        "Game/Assets/TextMesh Pro",
-        "Game/Assets/Sand_level/Rules",
-        "Game/Assets/Sand_level"
+        "Game/Assets/Sand_level",
+        "Game/Assets",
+        "Game/Assets/Sand_level/Rules"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -32,11 +32,11 @@
             }
         },
         "Game/Assets/Sand_level/Map.tmx": {
-            "scale": 0.33,
+            "scale": 0.3294,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 1303.030303030303,
-                "y": 1345.4545454545455
+                "x": 994.2319368548875,
+                "y": 1404.068002428658
             }
         },
         "Game/Assets/Sand_level/Map.tsx": {
@@ -49,11 +49,11 @@
             "scaleInEditor": 0.5
         },
         "Game/Assets/Sand_level/Rules/Automapping_Rules.tmx": {
-            "scale": 1,
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 310,
-                "y": 366.5
+                "x": 408,
+                "y": 375.33333333333326
             }
         },
         "Game/Assets/Sand_level/Template.tsx": {
@@ -65,7 +65,7 @@
             "scaleInEditor": 1
         },
         "Game/Assets/Sand_level/TileSet_Template.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 1
         },
         "Game/Assets/Sand_level/TileSet_template.tsx": {
@@ -81,6 +81,10 @@
         "Game/Assets/Sand_level/Tileset_2.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "Game/Assets/Sand_level/Tilset_1.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
         }
     },
     "last.externalTilesetPath": "/Users/nipun/Desktop/C#_and_.NET/C_game/Game/Assets/Sand_level",
@@ -91,15 +95,17 @@
     "map.tileWidth": 64,
     "map.width": 50,
     "openFiles": [
-        "Game/Assets/Sand_level/Rules/Automapping_Rules.tmx",
         "Game/Assets/Sand_level/Map.tmx",
-        "Game/Assets/Sand_level/TileSet_Template.tsx"
+        "Game/Assets/Sand_level/Rules/Automapping_Rules.tmx",
+        "Game/Assets/Sand_level/TileSet_Template.tsx",
+        "Game/Assets/Sand_level/Tilset_1.tsx"
     ],
     "project": "Map_Design.tiled-project",
     "recentFiles": [
+        "Game/Assets/Sand_level/Tilset_1.tsx",
         "Game/Assets/Sand_level/TileSet_Template.tsx",
-        "Game/Assets/Sand_level/Map.tmx",
         "Game/Assets/Sand_level/Rules/Automapping_Rules.tmx",
+        "Game/Assets/Sand_level/Map.tmx",
         "Game/Assets/Sand_level/Template_TileSet.tsx",
         "Game/Assets/Sand_level/TileSet_template.tsx",
         "Game/Assets/Sand_level/Map.tsx",
@@ -107,8 +113,7 @@
         "Game/Assets/Sand_level/Tileset_2.tsx",
         "Game/Assets/Sand_level/Air_box.tsx",
         "Game/Assets/Sand_level/Tileset.tsx",
-        "Game/Assets/Sand_level/AutoMapping.tmx",
-        "Game/Assets/Sand_level/Rules.tsx"
+        "Game/Assets/Sand_level/AutoMapping.tmx"
     ],
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
     "tileset.lastUsedFormat": "tsx",

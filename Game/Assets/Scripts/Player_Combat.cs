@@ -12,7 +12,8 @@ public class PlayerCombat : MonoBehaviour
 
     // Layer mask for detecting enemies
     public LayerMask enemyLayers;
-    
+
+
     private float range;
     private float _attackRate = 1.8f; // Attacks per sec
     private int _specialAttackCounter; // Define a counter variable at the class level
@@ -94,7 +95,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     _resolveBuildUp+=10;
                     barHandler.GetPower(_resolveBuildUp);
-                    enemy3.TakeDamage(10);
+                    enemy3.TakeDamage(10, false);
                 }
             }
         }
@@ -151,7 +152,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     _resolveBuildUp+=10;
                     barHandler.GetPower(_resolveBuildUp);
-                    enemy3.TakeDamage(10);
+                    enemy3.TakeDamage(10, true);
                 }
             }
         }

@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Traps traps;
     [SerializeField] private Boss boss;
     
+	public AudioClip sceneMusic;
+    
     public LayerMask enemyLayers;
     public Transform defendPoint;
     
