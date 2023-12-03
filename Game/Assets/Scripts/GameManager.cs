@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public AudioClip sceneMusic;
+    
     [SerializeField] private BoxCollider2D boxCollider;
     public void Setup()
     {

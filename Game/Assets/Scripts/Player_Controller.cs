@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Traps traps;
     [SerializeField] private Boss boss;
     
+	public AudioClip sceneMusic;
+    
     public LayerMask enemyLayers;
     public Transform defendPoint;
     
@@ -269,7 +271,7 @@ public class PlayerController : MonoBehaviour
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
         
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             // Disable
             enemySpawner.DisableSpawnedEnemies();
