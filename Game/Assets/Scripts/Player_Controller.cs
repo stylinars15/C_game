@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     public Transform defendPoint;
     
     //player movent variables 
-    private float _moveSpeed; 
-    private float _jumpForce;
+    public float _moveSpeed; 
+    public float _jumpForce;
     
     private bool  _jumpState;
     private bool  _isDefending;

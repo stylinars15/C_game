@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Shock_trap : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Shock_trap : MonoBehaviour
 
     public Animator anim;
 
-    public Collider2D box; 
+    public List<Collider2D> box = new List<Collider2D>();
    
     private bool triggered;
     private bool active;
@@ -19,75 +20,94 @@ public class Shock_trap : MonoBehaviour
     private bool PlayerHit;
     
     public PlayerController playerController; 
+    public Dectection_Zone detectionzone_1,  detectionzone_2;
 
     
     private float cooldownTimer = 0f;
     private float activeTimer = 0f;
-    private float cooldownDuration = 4f; // 4 seconds cooldown
-    private float activeDuration = 1f; // 1 second active
+    public float cooldownDuration = 4f; // 4 seconds cooldown
+    private float activeDuration = 1f; // the animation duration is 1 second 
+    private float HitDuration = 4f; 
+    private float CurrentTime = 4f; 
+    
+    
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-           
-            PlayerHit = true; 
-        }    
-    }
+
     
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            PlayerHit = true;
-        }
-    }
+
     
-    private void OnTriggerExit2D(Collider2D collision)
+    public void CheckForPlayerSlow()        //checking if player is hit, during the animation. This is a animation event
     {
-        if (collision.gameObject.tag == "Player")
+        if (PlayerHit && (CurrentTime >=  HitDuration))
         {
-           
-            PlayerHit = false;
-        }
-    }
-    
-    public void CheckForPlayerSlow()
-    {
-        if (PlayerHit)
-        {
-            print("Slow");
+            CurrentTime = 0;
+            playerController._moveSpeed = 0.5f; // slow player down 
+            playerController._jumpForce = 15;     
         }
     }
 
-    
+  
+
     private void Update()
     {
-        // Cooldown phase
-        if (!anim.GetBool("Shock"))
+        if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0)
         {
-            cooldownTimer += Time.deltaTime;
-            if (cooldownTimer >= cooldownDuration)
+            if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
             {
-                anim.SetBool("Shock", true); // Activate the trap
-                cooldownTimer = 0; // Reset the cooldown timer
-                
+                PlayerHit = true;
             }
+            else PlayerHit = false;
+
+
+            if (CurrentTime < HitDuration) // stop increasing the time after a given duration 
+            {
+                CurrentTime += Time.deltaTime;
+            }
+
+            // Cooldown phase
+            if (!anim.GetBool("Shock"))
+            {
+                cooldownTimer += Time.deltaTime;
+                if (cooldownTimer >= cooldownDuration)
+                {
+                    anim.SetBool("Shock", true); // Activate the trap
+                    cooldownTimer = 0; // Reset the cooldown timer
+
+                }
+            }
+            // Active phase
+            else
+            {
+                activeTimer += Time.deltaTime;
+                if (activeTimer >= activeDuration)
+                {
+                    anim.SetBool("Shock", false); // Deactivate the trap
+                    activeTimer = 0; // Reset the active timer
+
+                }
+
+            }
+
+            if (!PlayerHit && CurrentTime >= HitDuration)
+            {
+                playerController._moveSpeed = 1f; //reset speed for the player 
+                playerController._jumpForce = 25;
+            }
+
         }
-        // Active phase
         else
         {
-            activeTimer += Time.deltaTime;
-            if (activeTimer >= activeDuration)
-            {
-                anim.SetBool("Shock", false); // Deactivate the trap
-                activeTimer = 0; // Reset the active timer
-                print("SlowStop");
-            }
-            
-            
+            anim.SetBool("Shock", false); // Deactivate the trap
+            playerController._moveSpeed = 1f; //reset speed for the player 
+            playerController._jumpForce = 25;
         }
 
-   
+
+    }
+    
+    public void Disable_Traps()
+    {
+        anim.SetBool("Shock", false);
+        this.enabled = false;
     }
 }

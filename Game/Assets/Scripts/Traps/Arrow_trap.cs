@@ -14,7 +14,7 @@ public class Traps : MonoBehaviour
 
     public Dectection_Zone detectionzone_1,  detectionzone_2;
 
-    private BarHandler healthbar; 
+
 
    
    public void ShootArrow()
@@ -40,8 +40,6 @@ public class Traps : MonoBehaviour
    {
        //We are setting cool down timer to attack cooldown, so that when enemy is detected the trap is shooting immediately
        CoolDownTimer = AttackCooldown;
-    
-       healthbar = FindObjectOfType<BarHandler>();
    }
 
 
