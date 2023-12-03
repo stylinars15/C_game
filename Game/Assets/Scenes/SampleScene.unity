@@ -1775,6 +1775,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   defendPoint: {fileID: 966357175}
+  _canMove: 1
 --- !u!95 &424158068
 Animator:
   serializedVersion: 5
@@ -6068,6 +6069,7 @@ MonoBehaviour:
   s_attack: {fileID: 508780582}
   wait_attack: {fileID: 842827561}
   playerCombat: {fileID: 424158070}
+  playerController: {fileID: 424158066}
 --- !u!1 &1871731942
 GameObject:
   m_ObjectHideFlags: 0
