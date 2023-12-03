@@ -12,6 +12,7 @@ public class Controls : MonoBehaviour
     public Transform s_attack;
     public Transform wait_attack;
     public PlayerCombat playerCombat;
+    public PlayerController playerController;
     
     private enum State
     {
@@ -28,15 +29,17 @@ public class Controls : MonoBehaviour
 
     private void Start()
     {
-        jump.gameObject.SetActive(false);
-        defend.gameObject.SetActive(false);
-        s_attack.gameObject.SetActive(false);
-        attack.gameObject.SetActive(false);
-        wait_attack.gameObject.SetActive(false);
+        Deactivate();
     }
 
     void FixedUpdate()
-    { 
+    {
+        if (!playerController._canMove)
+        {
+            move.gameObject.SetActive(false);
+            Deactivate();
+            this.enabled = false;
+        }
         switch (currentState)
         {
             case State.Move:
@@ -94,5 +97,14 @@ public class Controls : MonoBehaviour
                 this.enabled = false; // Disables this script
                 break;
         }
+    }
+
+    private void Deactivate()
+    {
+        jump.gameObject.SetActive(false);
+        defend.gameObject.SetActive(false);
+        s_attack.gameObject.SetActive(false);
+        attack.gameObject.SetActive(false);
+        wait_attack.gameObject.SetActive(false);
     }
 }

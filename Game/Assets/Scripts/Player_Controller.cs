@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     
     private bool  _jumpState;
     private bool  _isDefending;
-    private bool _canMove = true;
+    public bool _canMove = true;
     
     private float _moveHorizontal; 
     private float _moveVertical; 
