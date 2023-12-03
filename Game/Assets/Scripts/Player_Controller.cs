@@ -293,8 +293,7 @@ public class PlayerController : MonoBehaviour
                 // Check if the collider has a Goblin component
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
-				Boss enemy3 = enemyCollider.GetComponent<Boss>();
-                if (enemy != null || enemy1 != null || enemy3 != null)
+                if (enemy != null || enemy1 != null)
                 {
                     return true;
                 }

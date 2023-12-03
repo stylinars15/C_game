@@ -81,7 +81,7 @@ public class PlayerCombat : MonoBehaviour
                     barHandler.GetPower(_resolveBuildUp);
                     enemy2.TakeDamage(20);
                 }
-                
+                /*
                 Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
                 if (enemy3 != null)
                 {
@@ -92,6 +92,8 @@ public class PlayerCombat : MonoBehaviour
                         _resolveBuildUp+=10;
                     }
                 }
+                */
+
             }
         }
     }
@@ -137,6 +139,7 @@ public class PlayerCombat : MonoBehaviour
                 {
                     enemy2.TakeDamage(20);
                 }
+                /*
                 Skeleton enemy3 = enemyCollider.GetComponent<Skeleton>();
                 if (enemy3 != null)
                 {
@@ -144,6 +147,7 @@ public class PlayerCombat : MonoBehaviour
                     barHandler.GetPower(_resolveBuildUp);
                     enemy3.TakeDamage(20);
                 }
+                */
             }
         }
     }

@@ -118,7 +118,6 @@ public class Boss : MonoBehaviour
             _currentHealth = 0; // Ensure health doesn't go negative
             Debug.Log("dead"); 
             animator.SetTrigger(Death);
-            DisableGoblin();
             isDead = true;
         }
         else
