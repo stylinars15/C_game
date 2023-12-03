@@ -177,17 +177,5 @@ public class Skeleton : MonoBehaviour
         this.enabled = false;
     }
     
-    void OnDrawGizmos()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-
-        // Draw a wire sphere to visualize the attack range
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
-
 }
-
 

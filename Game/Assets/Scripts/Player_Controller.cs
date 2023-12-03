@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 using Cinemachine;
 
 public class PlayerController : MonoBehaviour
@@ -11,13 +12,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Traps traps;
-
+    [SerializeField] private Boss boss;
+    
     public LayerMask enemyLayers;
     public Transform defendPoint;
     
     //player movent variables 
-    private float _moveSpeed; 
-    private float _jumpForce;
+    public float _moveSpeed; 
+    public float _jumpForce;
     
     private bool  _jumpState;
     private bool  _isDefending;
@@ -266,11 +268,17 @@ public class PlayerController : MonoBehaviour
         _canMove = false;
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
-        // DisableSpawnedEnemies
-        enemySpawner.DisableSpawnedEnemies();
         
-        // DisableTraps
-        traps.Disable_Traps();
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            // Disable
+            enemySpawner.DisableSpawnedEnemies();
+            traps.Disable_Traps();
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            boss.DisableBoss();
+        }
         
         //gameover screen
         gameManager.Setup();
@@ -291,7 +299,8 @@ public class PlayerController : MonoBehaviour
                 Goblin enemy = enemyCollider.GetComponent<Goblin>();
                 FlyingEye enemy1 = enemyCollider.GetComponent<FlyingEye>();
                 Skeleton enemy2 = enemyCollider.GetComponent<Skeleton>();
-                if (enemy != null || enemy1 != null || enemy2 != null)
+                Boss enemy3 = enemyCollider.GetComponent<Boss>();
+                if (enemy != null || enemy1 != null || enemy2 != null || enemy3 != null)
                 {
                     return true;
                 }

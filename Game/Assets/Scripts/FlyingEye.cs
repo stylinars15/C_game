@@ -48,7 +48,6 @@ public class FlyingEye : MonoBehaviour
                 isAttacking = true;
                 animator.SetTrigger(Attack);
                 cooldownTimer = 0;
-              
             }
             else if (PlayerInsight())
             {
