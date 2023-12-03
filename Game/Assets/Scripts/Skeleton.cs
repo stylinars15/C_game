@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/*
 public class Skeleton : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -190,4 +191,4 @@ public class Skeleton : MonoBehaviour
 
 }
 
-
+*/

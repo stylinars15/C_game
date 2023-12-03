@@ -1,55 +1,54 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEye : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     // Start is called before the first frame update
     // Reference to the animator for player animations
     public Animator animator;
-    private int _maxHealth = 100;
+    private int maxHealth = 300;
     int _currentHealth;
 
-    private float _attackCooldown = 2f;
-    private float attackRange = 1.8f;
+    private float attackCooldown = 1.7f;
+    private float attackRange = 2.2f;
     [SerializeField] private BoxCollider2D boxCollider;
-    public CapsuleCollider2D capsuleCollider;
-    [SerializeField] private LayerMask playerLayer;
-    PlayerController playerController;
-    
+    [SerializeField] private PolygonCollider2D polygonCollider;
+    public LayerMask playerLayer;
+
+    private PlayerController playerController;
     private float cooldownTimer = Mathf.Infinity;
     public bool isDead { get; private set; }
-    private float movementSpeed = 2.0f; 
+    private float movementSpeed = 2.2f; // Speed at which the Goblin moves towards the player.
     private Transform playerTransform;
     private bool isAttacking;
-    
-    //animations
-    private static readonly int TakeHit = Animator.StringToHash("Take_hit");
-    private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int TakeHit = Animator.StringToHash("TakeHit");
+    private static readonly int Death = Animator.StringToHash("Death");
 
     void Start()
     { 
-        _currentHealth = _maxHealth;
+        _currentHealth = maxHealth;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Assuming the player has a "Player" tag.
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        
     }
     
     private void Update()
     {
-        if (IsAnimationPlaying(animator, "Take_hit"))
+        if (!isAttacking)
         {
-            
-        }
-        else if (!isAttacking)
-        {
-            // Check is within attack range.
+            // Check if the boss is within attack range.
             if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
             {
+                // Start attacking when in range.
+                animator.SetBool(IsMoving, false);
                 isAttacking = true;
                 animator.SetTrigger(Attack);
                 cooldownTimer = 0;
             }
-            else if (PlayerInsight())
+            else if (playerInsight())
             {
                 float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
                 Vector3 localScale = transform.localScale;
@@ -61,22 +60,30 @@ public class FlyingEye : MonoBehaviour
                 }
 
                 // If the player is in sight, move towards the player.
+                animator.SetBool(IsMoving, true);
                 Vector3 targetPosition = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+            }
+            else
+            {
+                animator.SetBool(IsMoving, false);
             }
         }
         else 
         {
             // If attacking, check the attack cooldown.
             cooldownTimer += Time.deltaTime;
-            if (cooldownTimer >= _attackCooldown)
+            if (cooldownTimer >= attackCooldown)
             {
                 isAttacking = false; // Reset attack state.
+                cooldownTimer = 0;
             }
         }
+        
+        
     }
     
-    private bool PlayerInsight()
+    private bool playerInsight()
     {
         RaycastHit2D hit = Physics2D.BoxCast(
             boxCollider.bounds.center,
@@ -87,27 +94,30 @@ public class FlyingEye : MonoBehaviour
     }
     
     
-    // Called when enemy attacks
+    
+    // Called when boss HITS
     private void DamagePlayer()
     {
-        // check if player is within attack range
+        // check if player is within attackrange
         if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
         {
-            playerController.PlayDamageAnimation(5);
+            print("Hello");
+            playerController.PlayDamageAnimation(20);
         }
     }
+    
     
     // USED IN PLAYER_COMBAT
     public void TakeDamage(int damage) 
     {
         _currentHealth -= damage;
+        animator.SetBool(IsMoving,false);
 
         if(_currentHealth <= 0)
         {
             _currentHealth = 0; // Ensure health doesn't go negative
-            Debug.Log("dead"); // Add this line for debugging
+            Debug.Log("dead"); 
             animator.SetTrigger(Death);
-            Disable_FLying_eye();
             isDead = true;
         }
         else
@@ -115,10 +125,22 @@ public class FlyingEye : MonoBehaviour
             animator.SetTrigger(TakeHit);
         }
     }
-
-    public void Disable_FLying_eye()
+    
+    public void TriggerPlayerDamageFromAnimationEvent()
     {
-        capsuleCollider.enabled = false;
+        // Check if player is within attack range
+        if (Vector3.Distance(transform.position, playerTransform.position) <= attackRange)
+        {
+            playerController.PlayDamageAnimation(20);
+        }
+    }
+
+    
+    
+
+    public void DisableGoblin()
+    {
+        polygonCollider.enabled = false;
         boxCollider.enabled = false;
         this.enabled = false;
     }
