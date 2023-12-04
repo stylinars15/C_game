@@ -28,6 +28,8 @@ public class Boss : MonoBehaviour
     private static readonly int TakeHit = Animator.StringToHash("TakeHit");
     private static readonly int Death = Animator.StringToHash("Death");
 
+    public Boss_health health; 
+
     void Start()
     { 
         _currentHealth = maxHealth;
@@ -111,6 +113,7 @@ public class Boss : MonoBehaviour
     {
         _currentHealth -= damage;
         animator.SetBool(IsMoving,false);
+        health.TakeDamage(damage);
 
         if(_currentHealth <= 0)
         {

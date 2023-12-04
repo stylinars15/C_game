@@ -28,10 +28,7 @@ public class Shock_trap : MonoBehaviour
     public float cooldownDuration = 4f; // 4 seconds cooldown
     private float activeDuration = 1f; // the animation duration is 1 second 
     private float HitDuration = 4f; 
-    private float CurrentTime = 4f; 
-    
-    
-
+    private float CurrentTime = 4f;
 
     
 
@@ -55,11 +52,15 @@ public class Shock_trap : MonoBehaviour
 
         if (detectionzone_2 != null && detectionzone_2.detectedObjs.Count > 0)
         {
+            
             if (detectionzone_1 != null && detectionzone_1.detectedObjs.Count > 0)
             {
                 PlayerHit = true;
             }
-            else PlayerHit = false;
+            else
+            {
+                PlayerHit = false;
+            }
 
 
             if (CurrentTime < HitDuration) // stop increasing the time after a given duration 
@@ -90,7 +91,7 @@ public class Shock_trap : MonoBehaviour
                 }
 
             }
-
+            
             if (!PlayerHit && CurrentTime >= HitDuration)
             {
                 playerController._moveSpeed = 1f; //reset speed for the player 
@@ -98,16 +99,7 @@ public class Shock_trap : MonoBehaviour
             }
 
         }
-
-        // if (detectionzone_2.detectedObjs.Count == 0)
-        // {
-        //     anim.SetBool("Shock", false); // Deactivate the trap
-        //     playerController._moveSpeed = 1f; //reset speed for the player 
-        //     playerController._jumpForce = 25;  
-        // }
         
-
-
     }
     
     public void Disable_Traps()
