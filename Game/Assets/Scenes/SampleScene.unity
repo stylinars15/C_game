@@ -8299,6 +8299,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1837077095032027315, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 2362502554033995492, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 2883268026892088094, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 3414339263423694664, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
     - target: {fileID: 3466720588095147560, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_LocalPosition.x
       value: 134.51643
@@ -8339,6 +8355,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4257898126703211187, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 5912506297308080801, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 6971818890378855837, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 7643193479909544755, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 7840872116652894478, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 8373815874547437014, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
     - target: {fileID: 8692158914646104779, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_Name
       value: Arrowtrap (1)
@@ -9284,6 +9324,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1837077095032027315, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 2362502554033995492, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 2883268026892088094, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 3414339263423694664, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
     - target: {fileID: 3466720588095147560, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.17
@@ -9324,10 +9380,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4257898126703211187, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
     - target: {fileID: 5779806994523220854, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.15
       objectReference: {fileID: 0}
+    - target: {fileID: 5912506297308080801, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 6971818890378855837, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 7643193479909544755, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 7840872116652894478, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
+    - target: {fileID: 8373815874547437014, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 424158066}
     - target: {fileID: 8692158914646104779, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_Name
       value: Arrowtrap (2)
