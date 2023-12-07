@@ -9400,6 +9400,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169569987216960828, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.48
+      objectReference: {fileID: 0}
     - target: {fileID: 1837077095032027315, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
@@ -9412,6 +9416,14 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 424158066}
+    - target: {fileID: 2975293583878999279, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2975293583878999279, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.62
+      objectReference: {fileID: 0}
     - target: {fileID: 3414339263423694664, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: playerController
       value: 
@@ -9484,6 +9496,10 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 424158066}
+    - target: {fileID: 8642138368174788583, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.27
+      objectReference: {fileID: 0}
     - target: {fileID: 8692158914646104779, guid: abcc8ec3abbba4e4ab8cf28613cdb574, type: 3}
       propertyPath: m_Name
       value: Arrowtrap (2)
