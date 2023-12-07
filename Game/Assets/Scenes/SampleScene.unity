@@ -7690,7 +7690,7 @@ GameObject:
   - component: {fileID: 1364478271}
   - component: {fileID: 1364478270}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
